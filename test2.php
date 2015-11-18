@@ -171,7 +171,7 @@ while($nb < count($tab)){
 			else{
 				$html = $html . "<td valign=top style=border-style:solid><table width=100% height=300% style=border-style:solid border-size:5>";
 					$num_precedent=0;
-					$num_precedent2=0;
+					$num_precedent2=1;
 					for($n=0;$n<count($tab3);$n++){
 						if($tab3[$n]->getGroupe() - $num_precedent > 1){
 							for($g=0;$g<$tab3[$n]->getGroupe() - $num_precedent;$g++){
@@ -194,7 +194,7 @@ while($nb < count($tab)){
 							$html = $html . "<tr height=150px style=border-bottom:1pt solid black><td style=valign:top bgcolor=red align=center>". $tab3[$n]->afficher() ."</td></tr>";
 						}
 						$num_precedent = $tab3[$n]->getGroupe();
-						$num_precedent2 = $tab3[$n]->getSousGroupe();
+						$num_precedent2 = $tab3[$n]->getSousGroupe()%2;
 					}
 				$html = $html . "</table></td>";
 				}
@@ -249,7 +249,7 @@ while($nb < count($tab)){
 							$html = $html . "<tr height=150px style=border-bottom:1pt solid black><td style=valign:top bgcolor=red align=centere style=border-style:solid>". $tab3[$n]->afficher() ."</td></tr>";
 						}
 						$num_precedent = $tab3[$n]->getGroupe();
-						$num_precedent2 = $tab3[$n]->getSousGroupe();
+						$num_precedent2 = $tab3[$n]->getSousGroupe()%2;
 					}
 		$html = $html . "</table></td>";
 		}
