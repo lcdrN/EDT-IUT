@@ -8,7 +8,7 @@ $nb=0;
 $tab;
 
 
-$ICS = "https://edt.univ-nantes.fr/iut_nantes/g3145.ics";
+$ICS = "test.ics";
 
 
 $ical = new SG_iCalReader($ICS);
@@ -169,17 +169,32 @@ while($nb < count($tab)){
 				$html = $html . "<td bgcolor=#F7BE81 style=border-style:solid align=center>". $tab3[0]->afficher() ."</td>";
 			}
 			else{
-				$html = $html . "<td height=100% valign=top style=border-style:solid><table width=100% height=100% style=border-style:solid border-size:5>";
+				$html = $html . "<td valign=top style=border-style:solid><table width=100% height=300% style=border-style:solid border-size:5>";
+					$num_precedent=0;
+					$num_precedent2=0;
 					for($n=0;$n<count($tab3);$n++){
+						if($tab3[$n]->getGroupe() - $num_precedent > 1){
+							for($g=0;$g<$tab3[$n]->getGroupe() - $num_precedent;$g++){
+							$html = $html . "<tr><td><br><br><br><br></td></tr>";
+							}
+						}
+						if($tab3[$n]->getSousGroupe() - $num_precedent2 > 1 && $num_precedent != $tab3[$n]->getGroupe()){
+							$html = $html . "<tr><td><br><br><br><br></td></tr>";
+						}
 						if($tab3[$n]->getTypeCour() == "Cour"){
 							$html = $html . "<tr style=border-bottom:1pt solid black><td style=valign:top bgcolor=#F7BE81 align=center>". $tab3[$n]->afficher() ."</td></tr>";
 						}
 						else if($tab3[$n]->getTypeCour() == "TD"){
-							$html = $html . "<tr style=border-bottom:1pt solid black><td style=valign:top bgcolor=#A9BCF5 align=center>". $tab3[$n]->afficher() ."</td></tr>";
+							$html = $html . "<tr height=150px style=border-bottom:1pt solid black><td style=valign:top bgcolor=#A9BCF5 align=center>". $tab3[$n]->afficher() ."</td></tr>";
 						}
 						else if($tab3[$n]->getTypeCour() == "TP"){
-							$html = $html . "<tr style=border-bottom:1pt solid black><td style=valign:top bgcolor=#D0A9F5 align=center>". $tab3[$n]->afficher() ."</td></tr>";
+							$html = $html . "<tr height=50px style=border-bottom:1pt solid black><td style=valign:top bgcolor=#D0A9F5 align=center>". $tab3[$n]->afficher() ."</td></tr>";
 						}
+						else{
+							$html = $html . "<tr height=150px style=border-bottom:1pt solid black><td style=valign:top bgcolor=red align=center>". $tab3[$n]->afficher() ."</td></tr>";
+						}
+						$num_precedent = $tab3[$n]->getGroupe();
+						$num_precedent2 = $tab3[$n]->getSousGroupe();
 					}
 				$html = $html . "</table></td>";
 				}
@@ -189,7 +204,7 @@ while($nb < count($tab)){
 	else{
 	$compteur2=new DateTime('2015-11-16 08:00:00.000');
 
-	$html = $html . "</tr> <trstyle=border-style:solid> <th style=border-style:solid>".$jour[$compteur++]."</th>";
+	$html = $html . "</tr> <tr style=border-style:solid> <th style=border-style:solid>".$jour[$compteur++]."</th>";
 
 	$nb_cour_heure = count($tab3);
 
@@ -206,20 +221,35 @@ while($nb < count($tab)){
 		$date5 = $tab3[0]->getDateDeb();
 
 		if(count($tab3) == 1){
-				$html = $html . "<td bgcolor=#F7BE81 style=border-style:solid align=center >". $tab3[0]->afficher() ."</td>";
+				$html = $html . "<td height=100% bgcolor=#F7BE81 style=border-style:solid align=center >". $tab3[0]->afficher() ."</td>";
 			}
 			else{
-				$html = $html . "<td height=100% valign=top><table width=100% height=100% style=border-style:solid>";
+				$num_precedent = 0;
+				$num_precedent2=0;
+				$html = $html . "<td height=100% valign=top><table width=100% height=300% style=border-style:solid>";
 					for($n=0;$n<count($tab3);$n++){
+					if($tab3[$n]->getGroupe() - $num_precedent > 1){
+							for($g=0;$g<$tab3[$n]->getGroupe() - $num_precedent;$g++){
+							$html = $html . "<tr><td><br><br><br><br></td></tr>";
+							}
+						}
+						if($tab3[$n]->getSousGroupe() - $num_precedent2 > 1 && $num_precedent != $tab3[$n]->getGroupe()){
+							$html = $html . "<tr><td><br><br><br><br></td></tr>";
+						}
 						if($tab3[$n]->getTypeCour() == "Cour"){
 							$html = $html . "<tr style=border-bottom:1pt solid black><td style=valign:top bgcolor=#F7BE81 align=center style=border-style:solid>". $tab3[$n]->afficher() ."</td></tr>";
 						}
 						else if($tab3[$n]->getTypeCour() == "TD"){
-							$html = $html . "<tr style=border-bottom:1pt solid black><td style=valign:top bgcolor=#A9BCF5 align= center style=border-style:solid>". $tab3[$n]->afficher() ."</td></tr>";
+							$html = $html . "<tr height=150px style=border-bottom:1pt solid black><td style=valign:top bgcolor=#A9BCF5 align= center style=border-style:solid>". $tab3[$n]->afficher() ."</td></tr>";
 						}
 						else if($tab3[$n]->getTypeCour() == "TP"){
-							$html = $html . "<tr style=border-bottom:1pt solid black><td style=valign:top bgcolor=#D0A9F5 align=centere style=border-style:solid>". $tab3[$n]->afficher() ."</td></tr>";
+							$html = $html . "<tr height=50px style=border-bottom:1pt solid black><td style=valign:top bgcolor=#D0A9F5 align=centere style=border-style:solid>". $tab3[$n]->afficher() ."</td></tr>";
 						}
+						else{
+							$html = $html . "<tr height=150px style=border-bottom:1pt solid black><td style=valign:top bgcolor=red align=centere style=border-style:solid>". $tab3[$n]->afficher() ."</td></tr>";
+						}
+						$num_precedent = $tab3[$n]->getGroupe();
+						$num_precedent2 = $tab3[$n]->getSousGroupe();
 					}
 		$html = $html . "</table></td>";
 		}

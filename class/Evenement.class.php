@@ -27,12 +27,12 @@
 			$this->groupe = $groupe;
 			$this->sous_groupe = $sous_groupe;
 			$this->salle = $salle;
-			$this->id = $this->date_debut->format('Y-m-d H:i:s') . $groupe;
+			$this->id = $this->date_debut->format('Y-m-d H:i:s') . $groupe . $sous_groupe;
 		}
 
 
 		function afficher(){
-			return ($this->matiere . "<br>" . $this->prof . "<br> INFO " . $this->promo . " Groupe :" . $this->groupe ."-" . $this->sous_groupe . "<br>". $this->salle);
+			return ($this->matiere . "<br>" . $this->prof . "<br>" . $this->promo . " Groupe :" . $this->groupe ."-" . $this->sous_groupe . "<br>". $this->salle);
 		}
 
 
@@ -42,6 +42,14 @@
 
 		function getTypeCour(){
 			return $this->type_cour;
+		}
+		
+		function getGroupe(){
+			return $this->groupe;
+		}
+		
+		function getSousGroupe(){
+			return $this->sous_groupe;
 		}
 
 
