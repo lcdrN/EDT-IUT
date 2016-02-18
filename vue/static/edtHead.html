@@ -1,0 +1,51 @@
+<html>
+<meta charset="UTF-8">
+<head>
+	<page orientation=paysage>
+	<link rel=stylesheet type=text/css href=vue/css/acceuil.css>
+	<link rel=stylesheet type=text/css href=vue/css/edt.css>
+	<link type=text/css href=vue/css/printEDT.css rel=stylesheet media=print>
+	<script type=text/javascript src="vue/scripts/edt.js"></script>
+</head>
+<body onload="init();">
+	<div id="option" >
+			<fieldset id="fieldset" style="display:none;">
+    		<legend><b><i>Options</i></b></legend>
+    <input type="checkbox" id='affprof' value='Cacher Prof' checked="check">Professeur<br>
+		<input type="checkbox" id='affsalle' value='Cacher Salles' checked="check">Salles<br>
+		<input type="checkbox" id='affmatiere' value='Cacher Matieres !' checked="check">Matieres<br>
+		<input type="checkbox" id='affheure' value='Cacher Heure' checked="check">Heure<br>
+		<input type="checkbox" id='afftype' value='Cacher Type' checked="check">Type<br>
+		<input type="checkbox" id='affgroupe' value='Cacher Groupe !' checked="check">Groupe<br>
+
+		<input type="button" class="suiv_pre" value="-"  id="police-">
+		<input type="button" class="suiv_pre" value="+"  id="police">
+		</fieldset>
+		<input type="button" class="suiv_pre" value="Aperçu impression"  id="prevu">
+	</div>
+	<div id="couleur">
+		<fieldset id="groupeColor">
+			<legend><b><i>Couleurs</i></b></legend>
+			<table>
+				<tr>
+					<td>TD: </td><td><input type="color" id="couleurTD" value="#81BEF7"></td>
+				</tr>
+				<tr>
+					<td>TP: </td><td><input type="color" id="couleurTP" value="#567567"></td>
+				</tr>
+				<tr>
+					<td>Amphi: </td><td><input type="color" id="couleurAmphi" value="#A9F5F2"></td>
+				</tr>
+				<tr>
+					<td>DS: </td><td><input type="color" id="couleurDS" value="#FF9800"></td>
+				</tr>
+				<tr>
+					<td>Projet: </td><td><input type="color" id="couleurProjet"></td>
+				</tr>				
+			</table>
+			</fieldset>
+		<input type="button" class="suiv_pre" value="Valider"  id="color">
+	</div>
+	<a href="index.php"><div id="logo"><img src="IUT.png" height="200" width="200"></div> </a>
+
+	

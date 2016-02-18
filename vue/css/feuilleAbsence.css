@@ -1,0 +1,98 @@
+@page {
+	size: landscape;
+	}
+	
+
+td {
+    padding: 5px;
+	margin: 5px;
+    text-align: left;
+	border-collapse: collapse;
+	border: 1px solid black;
+	color:black;
+	
+}
+table {
+    border-collapse: collapse;
+    width: 50%;
+	max-width: 2958px;	/*3058*/
+	max-height: 2380px; /*2480*/
+}
+
+td.etu {
+	width: 150px;
+	color:black;
+	height:15px;
+	font-size: 14px;
+	text-align: left;
+	border-left: none;
+}
+
+#headEtu div {
+	
+	width:150px;
+}
+
+#headEtu {
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}
+
+th.jour
+{
+	border:solid black 3px;
+}
+
+tr {
+	border: 1px solid black;
+	border-collapse: collapse;
+direction: rtl;
+}
+
+th.rotate {
+  /* Something you can count on */
+  height: 150px;
+  white-space: nowrap;
+
+
+}
+
+th.rotate > div {
+  transform: translate(-20px, 55px) rotate(45deg) ;
+  width: 30px;
+
+}
+
+th.rotate > div > span {
+  border-bottom: 1px solid #ccc;
+
+  
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+	}
+
+.trHead {
+	border-top: none;
+	border-right: none;	
+	border-left: none;
+	
+}
+
+
+
+#nbAbs {
+	height:10px;
+	font-size:10px;
+	text-align: right;
+
+}
+
+#sign {
+	height:40px;
+	text-align: right;
+	font-size:12px;
+}
+

@@ -1,0 +1,40 @@
+@page {
+	margin: 0.5cm;
+	}
+
+/*.nom_matiere, .prof, .salle, .groupe, .heure, .type{
+	font-size: 12px;
+}*/
+
+.edt
+{
+	margin-top: -30px;
+}
+
+td
+{
+	height: 30px;
+}
+
+#option, .suiv_pre, .hide
+{
+	display: none;
+}
+body {
+	margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+    height: 95%;
+}
+
+.tg-c3cn_print {
+	font-size: 20px;
+	font-weight: bold;
+	height: 0px;
+
+}
+
+.tg_print{
+	width: 3400px;
+	height: 2250px;
+}

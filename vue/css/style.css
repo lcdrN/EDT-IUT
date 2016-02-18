@@ -1,0 +1,84 @@
+@page {
+	size: landscape;
+	}
+	
+
+td {
+    padding: 5px;
+	margin: 5px;
+    text-align: left;
+	border-collapse: collapse;
+	border: 1px solid black;
+	color:black;
+	
+}
+table {
+    border-collapse: collapse;
+    width: 50%;
+	max-width: 2958px;	/*3058*/
+	max-height: 2380px; /*2480*/
+}
+
+.etu div {
+	width:150px;
+	color:black;
+	height:15px;
+	font-size: 14px;
+	text-align: right;
+}
+
+#headEtu div {
+	
+	width:150px;
+	
+}
+.headEtu {
+	border-top: none;
+	border-left: none;
+	border-left: none;
+	border: 1px solid black;
+	
+
+	
+}
+
+th.rotate {
+  padding: 10px;
+  height: 240px;
+  white-space: nowrap;
+  border-collapse: collapse;
+  width:10px;
+}
+
+th.rotate > div {
+  transform:
+    translate(10px, 118px)
+    rotate(290deg);
+	width: 20px;
+	border-collapse: collapse;
+}
+th.rotate > div > span {
+  border-bottom: 1px solid #ccc;
+  padding: 5px 10px;
+  border-collapse: collapse;
+}
+
+
+tr {
+	border: 1px solid black;
+	border-collapse: collapse;
+
+}
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+	}
+
+.trHead {
+	border-top: none;
+	border-right: none;	
+	border-left: none;
+	
+}
+
+
+

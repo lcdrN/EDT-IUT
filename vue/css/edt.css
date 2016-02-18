@@ -1,0 +1,278 @@
+.tg  {
+	border-collapse:collapse;
+	border-spacing:0;
+	background-color:transparant;
+}
+
+.tg_print
+{
+	border-collapse: collapse;
+	border-spacing: 0;
+	background-color: #FFF;
+	text-align: center;
+	vertical-align: center;
+}
+
+.tg td{
+	font-family:Arial, sans-serif;
+	font-size:14px;
+	padding:10px 5px;
+	border-style:solid;
+	border-width:1px;
+	overflow:hidden;
+	word-break:normal;
+	text-align: center;
+	vertical-align: center;
+}
+
+.tg_print .td_print, .tg_print .amphi_print, .tg_print .tg-y0wm_print, .tg_print .tg-4wtr_print
+{
+	height: 30px;
+	border: solid black 1px;
+	text-align: center;
+	vertical-align: center;
+}
+
+.tg th{font-family:Arial, sans-serif;
+	font-size:14px;
+	font-weight:normal;
+	padding:10px 5px;
+	border-style:solid;
+	border-width:1px;
+	overflow:hidden;
+	word-break:normal;
+}
+.tg .tg-c3cn{background-color:#638BB7;
+	text-align:right;
+
+	text-align:center;
+}
+
+.tg .jour
+{
+	transform: rotate(-90deg);
+	font-weight: bold;
+}
+
+
+
+.tg .tg-jbrh{
+	background-color:transparant;
+	vertical-align:top;
+	border:none
+}
+.tg .tg-y0wm{
+	font-weight:none;
+	background-color:#567567;
+	text-align:center;
+	vertical-align:top;
+	border: solid black 1px;
+}
+.tg .tg-yw4l{
+	vertical-align:top
+}
+.tg .td{
+	font-weight:none;
+	font-size:18px;
+	background-color:#81BEF7;
+	color:black;
+	text-align:center;
+	vertical-align:top;
+	margin:auto
+}
+.tg .tg-wohh{
+	background-color:#9698ed;
+	text-align:center;
+	vertical-align:top
+}
+.tg .amphi{
+	background-color:#A9F5F2;
+	text-align:right;
+	vertical-align:top;
+	text-align:center;
+	font-size:18px;
+}
+
+
+
+
+
+.ds {
+	background-color:#ff9800;
+	text-align:right;
+	vertical-align:top;
+	text-align:center;
+
+}
+
+#option {
+	width: auto;
+	background-color: white;
+	border-radius: 5px;
+	position: fixed;
+	right: 30px;
+	padding: 10px;
+}
+
+#couleur {
+	width: auto;
+	background-color: white;
+	border-radius: 5px;
+	position: fixed;
+	right: 30px;
+	bottom: 10%;
+	padding: 10px;
+	text-align: left;
+}
+
+#groupeColor
+{
+	text-align: left;
+}
+
+
+.edt
+{
+	margin: 20px auto;
+	margin-top: 20px;
+	width: 68%;
+	background-color: #FFF;
+	padding: 20px;
+	border-radius: 5px;
+}
+.suiv_pre {
+  border: 2px solid transparent;
+  background: #71AFD9;
+  color: #ffffff;
+  line-height: 25px;
+  text-decoration: none;
+  text-shadow: none;
+  border-radius: 3px;
+  box-shadow: none;
+  transition: 0.25s;
+  display: inline-block;
+  width: 150px;
+}
+
+
+
+.suiv_pre:hover
+{
+  
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background-color: #91C0DF;
+}
+
+#logo
+{
+	margin-top: 500px;
+	position: fixed;
+	left: 1%;
+	bottom: 1%;
+}
+
+#div_prevu {
+	/*margin-top: 1px;*/
+	width: 84%;
+	height: 95%;
+	left:1%;
+	/*margin-left: 10%;*/
+
+	background-color: red;
+	visibility: hidden;
+	z-index: 9;
+	position: absolute;
+
+
+
+
+	background-color: #FFF;
+
+	border-radius: 5px;
+
+}
+
+fieldset {
+	border-style: dotted;
+	margin-bottom: 10px;
+}	
+
+.nom_matiere_print, .prof_print, .salle_print, .groupe_print, .heure_print, .type_print{
+	font-size: 12px;
+}
+.tg_print .tg-c3cn_print {
+	border-style: solid;
+	border-color: black;
+	border-width: 1px;
+	font-size: 15px;
+}
+
+.tg_print {
+	margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+    /*height: 95%;*/
+}
+.tg-y0wm {
+	border-style: solid;
+	border-color: black;
+	border-width: 1px;
+	font-size: 15px;
+}
+
+.tg-4wtr {
+	border-style: solid;
+	border-color: black;
+	border-width: 1px;
+	font-size: 15px;
+}
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    width:1000px;
+    margin:auto;
+    border-radius: 10px;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #71AFD9;
+}
+
+#police- {
+	width: 45%;
+	height: 20px;
+
+	line-height: 0px;
+	margin-top: 10px;
+}
+
+#police {
+	width: 45%;
+	height: 20px;
+
+	line-height: 0px;
+	margin-top: 10px;
+	
+}
+
