@@ -244,7 +244,7 @@ class Dao {
 
 		/**
 		*	Methode qui retourne les cours de l'ics selon la date du debut.
-		*	Prend les cours a partir de la date debut compris + 6 jours (inclus)
+		*	Prend les cours a partir de la date debut
 		*	@param date -> 'm-d H:i:s'
 		*	@return Un tableau de cours
 		*/
@@ -332,22 +332,6 @@ class Dao {
 
 
 		function getCourPrecedent($cours){
-		// 	foreach ($cours->getGroupe() as $groupe) {
-		// 	$date_deb = $cours->getDateDeb();
-		// 	var_dump($date_deb);
-		// 	$cours_journe = $this->getCoursDateJournee('2016-02-16');
-		// 	sort($cours_journes);
-		// 	$ret = 0;
-		// 	for ($i=0; $i < count($cours_journe) ; $i++) { 
-		// 		if ( $cours_journe[$i] == $date_deb) {
-		// 			$ret = $i-1;
-		// 		}
-		// 	}
-		// }
-
-		// 	return $cours_journes[$ret]->getDateFin();
-
-
 
 			$ret = new DateTime($cours->getDateDeb()->format('Y-m-d H:i:s'));
 			$ret->setTime(9, 0, 0);
@@ -355,13 +339,13 @@ class Dao {
 			foreach ($cours->getGroupe() as $groupe) {
 
 				$date = $cours->getDateDeb();
-				$tab_cours = $this->getCoursDateJourneeGroupe($date->format('Y-m-d'), $groupe->getNumero());
+				$tab_cours = $this->getCoursDateJourneeGroupeBis($date->format('Y-m-d'), $groupe->getNumero());
 				$tab_cours2 = $this->getCoursDateJourneeGroupe($date->format('Y-m-d'), "0");
 				$tab3 = array_merge($tab_cours, $tab_cours2);
 				sort($tab3);
 
 				for($i=0;$i<count($tab3);$i++) {
-					if($tab3[$i]->getDateFin() < $date){
+					if($tab3[$i]->getDateFin() < $date ){
 						$ret = $tab3[$i]->getDateFin();
 					}
 				}
@@ -369,6 +353,43 @@ class Dao {
 			return $ret;
 
 		}
+
+
+		function getTailleRowspan($cours){
+
+			$ret = "2";
+
+			foreach ($cours->getGroupe() as $groupe) {
+				if($groupe->getSousGroupe() != "0"){
+					return "1";
+				}
+
+				$date = $cours->getDateDeb();
+				$tab_cours = $this->getCoursDateJourneeGroupe($date->format('Y-m-d'), $groupe->getNumero());
+				//$tab_cours2 = $this->getCoursDateJourneeGroupe($date->format('Y-m-d'), "0");
+				//$tab3 = array_merge($tab_cours, $tab_cours2);
+				sort($tab_cours);
+
+				for($i=0;$i<count($tab_cours);$i++) {
+					if($tab_cours[$i]->getDateFin() < $date && !$this->tmp($tab_cours[$i]) ){
+						return "1";
+					}
+				}
+			}
+			return $ret;
+
+		}
+
+		function tmp($cours){
+			$tmp = true;
+			foreach ($cours->getGroupe() as $groupe) {
+				if($groupe->getSousGroupe() != "0"){
+					$tmp = false;
+				}
+			}
+			return $tmp;
+		}
+
 
 
 

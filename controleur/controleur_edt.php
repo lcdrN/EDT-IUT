@@ -56,7 +56,7 @@ function genererJourGroupe($jour, $groupe){
 
 		//Si une différence de temps entre le cour précédent et $uncour 
 		if(diffCoursDate($date_cour_precedent, $uncour->getDateDeb()) > 0){
-			$html .= $this->vue->genererEspaceCour(diffCoursDate($date_cour_precedent, $uncour->getDateDeb()));
+			$html .= $this->vue->genererEspaceCour(diffCoursDate($date_cour_precedent, $uncour->getDateDeb()), $this->dao->getTailleRowspan($uncour));
 		}
 		//On affiche le cour
 		$html .= $this->vue->genererUnCour($uncour);
@@ -71,8 +71,10 @@ function genererJourGroupe($jour, $groupe){
 		$date_cour_precedent = $this->dao->getCourPrecedent($coursG2[0]);
 		//Pour chaque cours
 		foreach ($coursG2 as $uncour) {
+			$date_cour_precedent = $this->dao->getCourPrecedent($uncour);
 			if(diffCoursDate($date_cour_precedent, $uncour->getDateDeb()) > 0){
-				$html .= $this->vue->genererEspaceCour(diffCoursDate($date_cour_precedent, $uncour->getDateDeb()));
+				echo $uncour->getProf()." ".$date_cour_precedent->format("Y-m-d H:i:s")."<br>";
+				$html .= $this->vue->genererEspaceCour(diffCoursDate($date_cour_precedent, $uncour->getDateDeb()), $this->dao->getTailleRowspan($uncour));
 			}
 		//On affiche le cour
 		$html .= $this->vue->genererUnCour($uncour);
@@ -145,11 +147,11 @@ function genererEDT($numero_semaine){
 }
 
 function genererTableEdt( $edt){
-	$crenaux = ["8:00 - 9:00", "9:00 - 10:00", "10:00 - 11:00", "11:00 - 12:00", "12:00 - 13:00", "13:00 - 14:00",  "14:00 - 15:00", "15:00 - 16:00", "16:00 - 17:00", "17:00 - 18:00", "18:00 - 19:00"];
+	$crenaux = ["8:00 - 9:20", "9:30 - 10:50", "11:00 - 12:20", "12:30 - 13:20", "13:30 - 14:50", "15:00 - 16:20",  "16:30 - 17:50", "18:00 - 19:20", "19:30 - 20:50", "17:00 - 18:00", "18:00 - 19:00"];
 	$html = "<table class=tg><tr><th class=tg-c3cn>Heures</th>";
 
 	for($i=0; $i<11; $i++){
-			$html .= "<th class=tg-c3cn colspan=6>".$crenaux[$i]."</th>";
+			$html .= "<th class=tg-c3cn colspan=8>".$crenaux[$i]."</th>";
 		}
 
 	$html .= "</tr>";

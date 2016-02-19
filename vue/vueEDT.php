@@ -48,8 +48,8 @@ class vueEDT {
 		return "<td class=".$class." colspan=".$uncour->getDureeToInt()." width=".$uncour->getDureeToInt()."><div class=nom_matiere>".$uncour->getMatiere()."</div> <div class=prof >".$uncour->getProf()."</div> \n <div class=salle >".$uncour->getSalle()."</div>\n <div class=type>".$uncour->getTypeCour()."</div> \n <div class=heure>".$uncour->getDateDeb()->format("H:i")." - ".$uncour->getDateFin()->format("H:i")."</div> \n <div class=groupe>".$uncour->toStringGroupe()."</div></td>";
 	}
 
-	function genererEspaceCour($diff){
-		return "<td class=tg-jbrh colspan=".$diff." width=".$diff."0></td>";
+	function genererEspaceCour($diff, $row){
+		return "<td class=tg-jbrh rowspan=".$row." colspan=".$diff." width=".$diff."0></td>";
 	}
 
 	function genererEnTetes(){
