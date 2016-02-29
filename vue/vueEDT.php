@@ -61,12 +61,15 @@ class vueEDT {
 		$groupe_decode = urldecode($_POST['groupe']);
 		$html ="<div id=div_prevu >".$this->tableApercu."</div>
 
+
+
 		<div class=edt id=tableEdt>
 			<ul>
 			  <li><a href=index.php>Accueil</a></li>
 			  <li><a class=active>EDT</a></li>
 			  <li><a href=#contact>Contact</a></li>
 			  <li><a href=#about>About</a></li>
+			  <li><a href=index.php?ics=".urlencode($_POST['groupe'])."&semaine=".$_POST['date']." target=_blank> Feuille Absence </a>
 			</ul>
 		<h1 text-align=center>".$groupe_decode." Semaine ".$_POST['date']."</h1>
 		<table id=boutons>
@@ -91,7 +94,7 @@ class vueEDT {
 	<td/>
 	<td>
 		<form method=post  action=index.php>
-		<a href=index.php?ics=".urlencode($_POST['groupe'])."&semaine=".$_POST['date']." target=_blank> <input class=suiv_pre type=button value=FeuilleAbsence> </a>
+		
 		</form>
 	<td/>
 

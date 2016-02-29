@@ -1,0 +1,36 @@
+
+
+<html>
+<meta charset="UTF-8">
+<head>
+	<page orientation=paysage>
+	<link rel=stylesheet type=text/css href=vue/css/acceuil.css>
+	<link rel=stylesheet type=text/css href=vue/css/edt.css>
+	<link rel=stylesheet type=text/css href=vue/css/feuilleAbsence.css>
+	<link type=text/css href=vue/css/printEDT.css rel=stylesheet media=print>
+	<script type=text/javascript src="vue/scripts/edt.js"> </script>
+</head>
+<body onload="init();">
+	
+	<a href="index.php"><div id="logo"><img src="IUT.png" height="200" width="200"></div> </a>
+	
+		
+		
+		
+
+	<div class=edt id='tableEdt'>
+		<form method="post"  action="index.php">
+			<input type="hidden" name="groupe" 
+			value=<?php if (isset($_POST["groupe"])) {echo $_POST["groupe"]; } else { echo $_GET["ics"];}?> />
+			<input type="hidden" name="date" 
+			value=<?php if (isset($_POST["date"])) {echo $_POST["date"]; } else { echo $_GET["semaine"];}?> />
+			<input type="hidden" name="edt" value="true" />
+			<ul>
+			  <li><a href=index.php>Accueil</a></li>
+			  <li><input type=submit value='EDT' class="nostyle" /></li>
+			  <li><a class=active>Feuille ABS</a></li>
+			  <li><a href=#about>Ajouter Etudiants</a></li>
+			  <li><a href=#contact>Contact</a></li>
+			  <li><a href=#about>About</a></li>
+			</ul>
+			</form>

@@ -470,6 +470,25 @@ class Dao {
 			return $url;
 		}
 
+		function getGroupeXLS()
+		{
+			$tab_groupe = array();
+			$objPHPExcel = PHPExcel_IOFactory::load("modele/DAO/etu.xls");
+			$sheet = $objPHPExcel->getSheet(0);
+			$lastRow = ($objPHPExcel->getActiveSheet()->getHighestRow()-6);
+			$tmp = array("","");
+
+			
+		     for ($j =7; $j < ($lastRow); $j++) {
+		     	
+			     	$tmp = $sheet->getCellByColumnAndRow(3,$j)->getValue();
+			     	array_push($tab_groupe,$tmp);
+			     
+		     }
+			
+			return array_unique($tab_groupe);
+		}
+
 
 	
 }

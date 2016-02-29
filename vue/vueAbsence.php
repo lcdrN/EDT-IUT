@@ -117,4 +117,22 @@ class vueAbsence {
 
 		echo $html;
 	}
+
+	function tableauPromo($groupes) {
+		include 'static/absencePromo.html';
+		foreach ($groupes as $g) {
+			echo "</br>";
+			echo '<a href="http://infoweb/~e145634y/edt_projet/edt_n%20%28copie%29/index.php?ics='.urlencode($g).'&semaine=8" target="_blank" >'.$g.' <a/>';
+		}
+		include 'static/absencePromoFoot.html';
+		// echo '<script type="text/javascript">'; //ouverture du javascript
+		// for ($i=0; $i<=5; $i++) { // début boucle
+		
+		// echo "window.open('http://infoweb/~e145634y/edt_projet/edt_n%20%28copie%29/index.php')";
+		
+		// } // fin boucle
+		 
+		// echo '</script>'; // fermeture du JS
+		
+	}
 }

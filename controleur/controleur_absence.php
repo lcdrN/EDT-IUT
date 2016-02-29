@@ -13,8 +13,28 @@ private $vue;
 
  function affiche(){
 
- 	$this->vue->head();
-	$this->vue->tableau();
+ 	if ( isset($_POST["groupe"]))  {
+ 		$groupe  = $_POST["groupe"];
+ 	} else {
+ 		$groupe  = $_GET["ics"];
+ 	}
+ 	if (  $groupe == "INFO2")  {
+
+ 		$dao = new Dao();
+		$dao->setICS($groupe);
+		$dao->getCours();
+		// $groupes = $dao->getGroupes2();
+		$groupes = $dao->getGroupeXLS();
+		
+		$this->vue->head();
+		$this->vue->tableauPromo($groupes);
+		
+
+ 	} else {
+ 		$this->vue->head();
+		$this->vue->tableau();
+ 	}
+ 	
  }
 }
 
