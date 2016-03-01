@@ -440,7 +440,7 @@ class Dao {
 		function getEtudiants($groupe)
 		{
 			$tab_Etu = array();
-			$objPHPExcel = PHPExcel_IOFactory::load("modele/DAO/etu.xls");
+			$objPHPExcel = PHPExcel_IOFactory::load("modele/DAO/data/etu.xls");
 			$sheet = $objPHPExcel->getSheet(0);
 			$lastRow = ($objPHPExcel->getActiveSheet()->getHighestRow()-6);
 			$tmp = array("","");
@@ -460,7 +460,7 @@ class Dao {
 
 		function getUrlForm($groupe) {
 			$url = "";
-			$fic = fopen("modele/DAO/form.csv", "r");
+			$fic = fopen("modele/DAO/data/form.csv", "r");
 			while($tab = fgetcsv($fic,1024,',') )
 			{	
 				if ( $tab[0] == $groupe ) {
@@ -469,11 +469,21 @@ class Dao {
 			}	
 			return $url;
 		}
+		
+		function getGroupesCSV() {
+			$tab_grp = array();
+			$fic = fopen("modele/DAO/data/form.csv", "r");
+			while($tab = fgetcsv($fic,1024,',') )
+			{	
+				array_push($tab_grp, $tab[0]);
+			}	
+			return $tab_grp;
+		}
 
 		function getGroupeXLS()
 		{
 			$tab_groupe = array();
-			$objPHPExcel = PHPExcel_IOFactory::load("modele/DAO/etu.xls");
+			$objPHPExcel = PHPExcel_IOFactory::load("modele/DAO/data/etu.xls");
 			$sheet = $objPHPExcel->getSheet(0);
 			$lastRow = ($objPHPExcel->getActiveSheet()->getHighestRow()-6);
 			$tmp = array("","");

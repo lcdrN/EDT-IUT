@@ -1,4 +1,4 @@
-<?
+<?php
 
 
 class vueAbsence {
@@ -122,7 +122,7 @@ class vueAbsence {
 		include 'static/absencePromo.html';
 		foreach ($groupes as $g) {
 			echo "</br>";
-			echo '<a href="http://infoweb/~e145634y/edt_projet/edt_n%20%28copie%29/index.php?ics='.urlencode($g).'&semaine=8" target="_blank" >'.$g.' <a/>';
+			echo '<a href="index.php?ics='.urlencode($g).'&semaine=8" target="_blank" >'.$g.' <a/>';
 		}
 		include 'static/absencePromoFoot.html';
 		// echo '<script type="text/javascript">'; //ouverture du javascript
@@ -133,6 +133,11 @@ class vueAbsence {
 		// } // fin boucle
 		 
 		// echo '</script>'; // fermeture du JS
+		
+	}
+	
+	function ajoutListe() {
+		include("static/ajoutListe.html");
 		
 	}
 }

@@ -1,8 +1,9 @@
-<?
+<?php
 
 require_once "controleur_accueil.php";
 require_once "controleur_edt.php";
 require_once "controleur_absence.php";
+require_once "controleur_ajout.php";
 
 class routeur {
 
@@ -11,20 +12,22 @@ class routeur {
 	private $ctrl_abs;
 
 	function __construct(){
-		
 		$this->ctrl_accueil = new controleurAccueil();
 		$this->ctrl_edt = new controleurEDT();
 		$this->ctrl_abs = new ControleurAbsence();
+		$this->ctrl_ajout = new ControleurAjout();
+
 
 	}
-		// else  else {
-		// 	$this->ctrl_accueil->affiche();
-		// }
+		
 
 	function router_requete() {
-		// echo $_POST["groupe"];
-		// echo $_POST["date"];
-		if ( isset($_GET["ics"]) && isset($_GET["semaine"])) {
+		
+		if ( isset($_GET["ajoutListe"])) {
+			$this->ctrl_ajout->affiche();
+		}
+		
+		else if ( isset($_GET["ics"]) && isset($_GET["semaine"])) {
 				$this->ctrl_abs->affiche();
 		}
 		else if ( isset($_POST["abs"] )){

@@ -12,8 +12,10 @@ private $vue;
  }
 
  function affiche(){
-
- 	if ( isset($_POST["groupe"]))  {
+ 	if (isset($_GET["ajoutListe"])) {
+ 		echo 'connard';
+ 		$this->vue->ajoutListe();
+ 	} else if ( isset($_POST["groupe"]))  {
  		$groupe  = $_POST["groupe"];
  	} else {
  		$groupe  = $_GET["ics"];
