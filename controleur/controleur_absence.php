@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__."/../vue/vueAbsence.php";
+require_once __DIR__."/../modele/DAO/Dao.php";
 
 class ControleurAbsence{
 
@@ -9,28 +10,35 @@ private $vue;
  
  public function __construct(){
  	$this->vue = new vueAbsence();
+ 	$this->dao = new Dao();
  }
 
  function affiche(){
+ 	
  	if (isset($_GET["ajoutListe"])) {
- 		echo 'connard';
  		$this->vue->ajoutListe();
+ 		
  	} else if ( isset($_POST["groupe"]))  {
- 		$groupe  = $_POST["groupe"];
+ 		$groupe  = explode(":",$_POST["groupe"])[1];
+ 		$promo = explode(":",$_POST["groupe"])[0];
  	} else {
  		$groupe  = $_GET["ics"];
  	}
- 	if (  $groupe == "INFO2")  {
-
+ 	
+ 	if ( $groupe == NULL) {
+ 		
  		$dao = new Dao();
-		$dao->setICS($groupe);
+		$dao->setICS($promo);
 		$dao->getCours();
 		// $groupes = $dao->getGroupes2();
-		$groupes = $dao->getGroupeXLS();
 		
-		$this->vue->head();
-		$this->vue->tableauPromo($groupes);
-		
+		if ( $this->dao->fichierPromoExist($promo) ) {
+			$groupes = $dao->getGroupeXLS($dao->getFeuilleAbsGroupe($promo));
+			$this->vue->head();
+			$this->vue->tableauPromo($groupes);
+		} else {
+			header('location:index.php?ajoutListe=true');
+		}
 
  	} else {
  		$this->vue->head();

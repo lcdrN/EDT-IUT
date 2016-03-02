@@ -16,13 +16,14 @@ class vueAbsence {
 
 	function tableau(){
 		if (isset($_POST['groupe'])){
-			$groupe = urldecode($_POST['groupe']);
+			$groupe = urldecode(explode(":",$_POST['groupe'])[1]);
 			$date = $_POST["date"];
 		} else {
 			$groupe = urldecode($_GET['ics']);
 			$date = $_GET["semaine"];
 		}
 		$dao = new Dao();
+		
 		$dao->setICS($groupe);
 		$dao->getCours();
 
@@ -47,7 +48,7 @@ class vueAbsence {
 			array_push($tabMod, $cours->getMatiere());
 		}
 
-		$tabEtu = $dao->getEtudiants($groupe);
+		$tabEtu = $dao->getEtudiants(explode(":",$_POST['groupe'])[0],$groupe);
 
 		
 		
@@ -136,8 +137,5 @@ class vueAbsence {
 		
 	}
 	
-	function ajoutListe() {
-		include("static/ajoutListe.html");
-		
-	}
+
 }

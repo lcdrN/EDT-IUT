@@ -58,10 +58,10 @@ class vueEDT {
 		include ('static/edtHead.html');
 		$precedent = $_POST['date']-1;
 		$suivant = $_POST['date']+1;
-		$groupe_decode = urldecode($_POST['groupe']);
-		$html ="<div id=div_prevu >".$this->tableApercu."</div>
-
-
+		$grp = explode(":", $_POST['groupe'])[1];
+		$groupe_decode = urldecode($grp);
+		$html =
+		"<div id=div_prevu >".$this->tableApercu."</div>
 
 		<div class=edt id=tableEdt>
 			<ul>
@@ -69,7 +69,7 @@ class vueEDT {
 			  <li><a class=active>EDT</a></li>
 			  <li><a href=#contact>Contact</a></li>
 			  <li><a href=#about>About</a></li>
-			  <li><a href=index.php?ics=".urlencode($_POST['groupe'])."&semaine=".$_POST['date']." target=_blank> Feuille Absence </a>
+			  <li><a href=index.php?ics=".urlencode($grp)."&semaine=".$_POST['date']." target=_blank> Feuille Absence </a>
 			</ul>
 		<h1 text-align=center>".$groupe_decode." Semaine ".$_POST['date']."</h1>
 		<table id=boutons>
@@ -77,7 +77,7 @@ class vueEDT {
 
 	<td>
 		<form method=post  action=index.php>
-		<input type=hidden name=groupe value=".urlencode(urldecode($_POST['groupe']))." />
+		<input type=hidden name=groupe value=".urlencode(urldecode($grp))." />
 		<input type=hidden name=date value=".$precedent." />
 		<input type=hidden name=edt value=true />
 		<input class=suiv_pre type=submit value='Semaine Precedente' />
@@ -86,7 +86,7 @@ class vueEDT {
 
 	<td>
 		<form method=post  action=index.php>
-		<input type=hidden name=groupe value=".urlencode(urldecode($_POST['groupe']))." />
+		<input type=hidden name=groupe value=".urlencode(urldecode($grp))." />
 		<input type=hidden name=date value=".$suivant." />
 		<input type=hidden name=edt value=true />
 		<input class=suiv_pre type=submit value='Semaine Suivante' />
@@ -121,12 +121,13 @@ function afficher($html){
 	function affiche2() {
 
 $dao = new Dao();
-$dao->setICS(urldecode($_POST['groupe']));
+$grp = explode(":", $_POST['groupe'])[1];
+$dao->setICS(urldecode($grp));
 $dao->getCours();
 
 $precedent = $_POST['date']-1;
 $suivant = $_POST['date']+1;
-$groupe_decode = urldecode($_POST['groupe']);
+$groupe_decode = urldecode($grp);
 
 
 $crenaux = ["8:00 - 9:00", "9:00 - 10:00", "10:00 - 11:00", "11:00 - 12:00", "12:00 - 13:00", "13:00 - 14:00",  "14:00 - 15:00", "15:00 - 16:00", "16:00 - 17:00", "17:00 - 18:00", "18:00 - 19:00"];
@@ -144,7 +145,7 @@ $html = "
 <form method=post  action=index.php>
 <td>
 	
-	<input type=hidden name=groupe value=".urlencode(urldecode($_POST['groupe']))." />
+	<input type=hidden name=groupe value=".urlencode(urldecode($grp))." />
 	<input type=hidden name=date value=".$precedent." />
 	<input type=hidden name=edt value=true />
 	<input class=suiv_pre type=submit value='Semaine Precedenteeeeeeeee' />
@@ -153,14 +154,14 @@ $html = "
 
 <td>
 
-	<input type=hidden name=groupe value=".urlencode(urldecode($_POST['groupe']))." />
+	<input type=hidden name=groupe value=".urlencode(urldecode($grp))." />
 	<input type=hidden name=date value=".$suivant." />
 	<input type=hidden name=edt value=true />
 	<input class=suiv_pre type=submit value='Semaine Suivante' />
 	
 <td/>
 <td>	
-<a href=index.php?ics=".urlencode($_POST['groupe'])."&semaine=".$_POST['date']." target=_blank> <input class=suiv_pre type=button value=FeuilleAbsence> </a>
+<a href=index.php?ics=".urlencode($grp)."&semaine=".$_POST['date']." target=_blank> <input class=suiv_pre type=button value=FeuilleAbsence> </a>
 <td/>
 </form>
 <tr/>

@@ -24,9 +24,13 @@ class routeur {
 	function router_requete() {
 		
 		if ( isset($_GET["ajoutListe"])) {
+			
+			
 			$this->ctrl_ajout->affiche();
+		} 
+		else if ( isset( $_POST["upload"]) ) {
+				$this->ctrl_ajout->upload();
 		}
-		
 		else if ( isset($_GET["ics"]) && isset($_GET["semaine"])) {
 				$this->ctrl_abs->affiche();
 		}

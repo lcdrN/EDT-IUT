@@ -437,25 +437,42 @@ class Dao {
 		
 		
 
-		function getEtudiants($groupe)
+		function getEtudiants($promo, $groupe)
 		{
-			$tab_Etu = array();
-			$objPHPExcel = PHPExcel_IOFactory::load("modele/DAO/data/etu.xls");
-			$sheet = $objPHPExcel->getSheet(0);
-			$lastRow = ($objPHPExcel->getActiveSheet()->getHighestRow()-6);
-			$tmp = array("","");
-
-			
-		     for ($j =7; $j < ($lastRow); $j++) {
-		     	//echo '</br>-'.$j.' - '.$sheet->getCellByColumnAndRow(1,$j);
-		     	if ( $sheet->getCellByColumnAndRow(3,$j) == $groupe) {
-			     	$tmp[0] = $sheet->getCellByColumnAndRow(1,$j);
-			     	$tmp[1] = $sheet->getCellByColumnAndRow(2,$j);
-			     	array_push($tab_Etu,$tmp);
+			try {
+				$tab_Etu = array();
+				$file_name = $this->getFeuilleAbsGroupe($promo);
+				$objPHPExcel = PHPExcel_IOFactory::load("modele/DAO/data/".$file_name);
+				$sheet = $objPHPExcel->getSheet(0);
+				$lastRow = ($objPHPExcel->getActiveSheet()->getHighestRow()-6);
+				$tmp = array("","");
+	
+				
+			     for ($j =7; $j < ($lastRow); $j++) {
+			     	//echo '</br>-'.$j.' - '.$sheet->getCellByColumnAndRow(1,$j);
+			     	if ( $sheet->getCellByColumnAndRow(3,$j) == $groupe) {
+				     	$tmp[0] = $sheet->getCellByColumnAndRow(1,$j);
+				     	$tmp[1] = $sheet->getCellByColumnAndRow(2,$j);
+				     	array_push($tab_Etu,$tmp);
+				     }
 			     }
-		     }
-			
-			return $tab_Etu;
+				
+				return $tab_Etu;
+			} catch (Exception $e) {
+				return NULL;
+			}
+		}
+		
+		function fichierPromoExist ($promo) {
+			$fic = fopen("modele/DAO/data/feuilleABS.csv", "r");
+			$boolean = false;
+			while($tab = fgetcsv($fic,1024,',') )
+			{	
+				if ( $tab[0] == $promo ) {
+					$boolean = true;
+				}
+			}	
+			return $boolean;
 		}
 
 		function getUrlForm($groupe) {
@@ -470,6 +487,30 @@ class Dao {
 			return $url;
 		}
 		
+		function ajoutPromoCsv($promo, $chemin_fichier) {
+			$lines = file("modele/DAO/data/feuilleABS.csv");
+			var_dump($lines);
+			$exist = false;
+			foreach ($lines as $line) {
+				if ( explode(",", $line)[0] == $promo ) {
+					$exist = true;
+					$line = explode(",", $line)[0] . $chemin_fichier.'.xls';
+					foreach ($lines as $fields) {
+					    file_put_contents("modele/DAO/data/feuilleABS.csv", $fields."\n", FILE_APPEND );
+					}
+				}
+			}
+			if ( !$exist) {
+				$lines = array();
+				array_push($lines, ($promo. ',' .$chemin_fichier.".xls") );
+				
+				foreach ($lines as $fields) {
+				    file_put_contents("modele/DAO/data/feuilleABS.csv", $fields."\n", FILE_APPEND );
+				}
+			}
+			
+		}
+		
 		function getGroupesCSV() {
 			$tab_grp = array();
 			$fic = fopen("modele/DAO/data/form.csv", "r");
@@ -479,11 +520,34 @@ class Dao {
 			}	
 			return $tab_grp;
 		}
+		
+		function getGroupeFeuilleAbs() {
+			$tab_grp = array();
+			$fic = fopen("modele/DAO/data/feuilleABS.csv", "r");
+			while($tab = fgetcsv($fic,1024,',') )
+			{	
+				array_push($tab_grp, $tab[0]);
+			}	
+			return $tab_grp;
+		}
+		
+		function getFeuilleAbsGroupe($promo) {
+			$fic = fopen("modele/DAO/data/feuilleABS.csv", "r");
+			$return = "";
+			while($tab = fgetcsv($fic,1024,',') )
+			{	
+				if ( $promo == $tab[0]) {
+					$return = $tab[1];
+				}
+			}
+			var_dump($return);
+			return $return;
+		}
 
-		function getGroupeXLS()
+		function getGroupeXLS($file_name)
 		{
 			$tab_groupe = array();
-			$objPHPExcel = PHPExcel_IOFactory::load("modele/DAO/data/etu.xls");
+			$objPHPExcel = PHPExcel_IOFactory::load("modele/DAO/data/".$file_name);
 			$sheet = $objPHPExcel->getSheet(0);
 			$lastRow = ($objPHPExcel->getActiveSheet()->getHighestRow()-6);
 			$tmp = array("","");

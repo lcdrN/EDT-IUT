@@ -19,17 +19,18 @@
 		
 
 	<div class=edt id='tableEdt'>
-		<form method="post"  action="index.php">
-			<input type="hidden" name="groupe" 
-			value=<?php if (isset($_POST["groupe"])) {echo $_POST["groupe"]; } else { echo $_GET["ics"];}?> />
-			<input type="hidden" name="date" 
-			value=<?php if (isset($_POST["date"])) {echo $_POST["date"]; } else { echo $_GET["semaine"];}?> />
-			<input type="hidden" name="edt" value="true" />
 			<ul>
 			  <li><a href=index.php>Accueil</a></li>
-			  <li><input type=submit value='EDT' class="nostyle" /></li>
 			  <li><a class="active">Ajouter Etudiants</a></li>
 			  <li><a href=#contact>Contact</a></li>
 			  <li><a href=#about>About</a></li>
 			</ul>
-			</form>
+			
+
+			<form method="post" action="index.php" enctype="multipart/form-data"> 
+				<select name="promo">
+	   				<option value="INFO1">INFO1</option>
+	   				<option value="INFO2">INFO2</option>
+	  			</select>
+	  			</br>
+	  		

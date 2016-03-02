@@ -18,7 +18,8 @@ private $dao;
  }
 
  function affiche(){
-	$this->dao->setICS(urldecode($_POST['groupe']));
+ 	$grp = explode(":", $_POST['groupe'])[0];
+	$this->dao->setICS(urldecode($grp));
 	$this->dao->getCours();
 
 	

@@ -16,7 +16,7 @@ class ControleurAjout{
 
     function affiche(){
         $this->vue->afficheHead();
- 	    $this->afficheSelect();
+ 	  //  $this->afficheSelect();
  	    $this->vue->afficheFoot();
     }
     
@@ -24,6 +24,23 @@ class ControleurAjout{
         $grp = $this->dao->getGroupesCSV();
         $this->vue->genererOption($grp);
 	     
+	}
+	
+	function upload() {
+	    /*Traitement du fichier*/
+	    var_dump($_FILES);
+	    var_dump($_POST["promo"]);
+	    if (move_uploaded_file ( $_FILES["listeEtu"]["tmp_name"] , 'modele/DAO/data/'.$_FILES["listeEtu"]["name"] ) ) {
+	        echo "<h3>Liste ajoutée.</h3>";
+	        $promo = explode('.',$_FILES["listeEtu"]["name"])[0];
+	        $this->dao->ajoutPromoCsv($_POST["promo"],$promo);
+	    }
+	    
+	    
+	    /*                     */
+	    
+	    $this->affiche();
+	    
 	}
 }
 
