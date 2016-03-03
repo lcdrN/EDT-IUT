@@ -1,0 +1,31 @@
+td {
+
+    text-align:center;
+    border-style: none;
+    vertical-align:middle;
+}
+
+tr {
+
+    text-align:center;
+    border-style: none;
+    vertical-align:middle;
+
+}
+
+table {
+    width: 50%;
+    height:20%;
+    border-style: dotted;
+    border-width:2px;
+    margin:auto;
+}
+
+tr:nth-child(even){
+    background: none;
+}
+
+.promo{
+    font-size:11px;
+    width:auto;
+}

@@ -442,6 +442,7 @@ class Dao {
 			try {
 				$tab_Etu = array();
 				$file_name = $this->getFeuilleAbsGroupe($promo);
+				// var_dump( $promo);
 				$objPHPExcel = PHPExcel_IOFactory::load("modele/DAO/data/".$file_name);
 				$sheet = $objPHPExcel->getSheet(0);
 				$lastRow = ($objPHPExcel->getActiveSheet()->getHighestRow()-6);
@@ -489,7 +490,7 @@ class Dao {
 		
 		function ajoutPromoCsv($promo, $chemin_fichier) {
 			$lines = file("modele/DAO/data/feuilleABS.csv");
-			var_dump($lines);
+			// var_dump($lines);
 			$exist = false;
 			foreach ($lines as $line) {
 				if ( explode(",", $line)[0] == $promo ) {
@@ -540,7 +541,7 @@ class Dao {
 					$return = $tab[1];
 				}
 			}
-			var_dump($return);
+			// var_dump($return);
 			return $return;
 		}
 

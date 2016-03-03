@@ -7,6 +7,8 @@
 	<link rel=stylesheet type=text/css href=vue/css/acceuil.css>
 	<link rel=stylesheet type=text/css href=vue/css/edt.css>
 	<link rel=stylesheet type=text/css href=vue/css/feuilleAbsence.css>
+	<link rel=stylesheet type=text/css href=vue/css/ajoutListe.css>
+
 	<link type=text/css href=vue/css/printEDT.css rel=stylesheet media=print>
 	<script type=text/javascript src="vue/scripts/edt.js"> </script>
 </head>
@@ -27,10 +29,16 @@
 			</ul>
 			
 
-			<form method="post" action="index.php" enctype="multipart/form-data"> 
-				<select name="promo">
-	   				<option value="INFO1">INFO1</option>
-	   				<option value="INFO2">INFO2</option>
-	  			</select>
+			<form method="post" action="index.php" enctype="multipart/form-data" >
+				<table >
+					<tr>
+						<td>
+							<select name="promo" class="imput promo">
+				   				<option value="INFO1">INFO1</option>
+				   				<option value="INFO2">INFO2</option>
+				  			</select>
+						</td>
+				
+				
 	  			</br>
 	  		

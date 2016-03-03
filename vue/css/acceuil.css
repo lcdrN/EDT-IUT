@@ -33,15 +33,23 @@ a{
 	width: 90%;
 	/*border: solid black 1px;*/
 	text-align: center;
+	border: none;
 }
 
 .form td
 {
 	/*border:solid black 1px;*/
+	border: none;
 	width: 50%;
 	padding: 10px;
 	font-weight: bold;
 	color:#A4A4A4;
+	text-align: center;
+}
+.form tr
+{
+	border: none;
+	text-align: center;
 }
 
 .imput

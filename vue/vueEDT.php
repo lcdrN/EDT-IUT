@@ -67,9 +67,10 @@ class vueEDT {
 			<ul>
 			  <li><a href=index.php>Accueil</a></li>
 			  <li><a class=active>EDT</a></li>
+			  <li><a href=index.php?ics=".urlencode($_POST['groupe'])."&semaine=".$_POST['date']." target=_blank> Feuille Absence </a>
+			  <li><a href=index.php?ajoutListe=true>Gérer Listes</a></li>
 			  <li><a href=#contact>Contact</a></li>
 			  <li><a href=#about>About</a></li>
-			  <li><a href=index.php?ics=".urlencode($grp)."&semaine=".$_POST['date']." target=_blank> Feuille Absence </a>
 			</ul>
 		<h1 text-align=center>".$groupe_decode." Semaine ".$_POST['date']."</h1>
 		<table id=boutons>
@@ -161,7 +162,7 @@ $html = "
 	
 <td/>
 <td>	
-<a href=index.php?ics=".urlencode($grp)."&semaine=".$_POST['date']." target=_blank> <input class=suiv_pre type=button value=FeuilleAbsence> </a>
+<a href=index.php?ics=".urlencode($_POST['groupe'])."&semaine=".$_POST['date']." target=_blank> <input class=suiv_pre type=button value=FeuilleAbsence> </a>
 <td/>
 </form>
 <tr/>

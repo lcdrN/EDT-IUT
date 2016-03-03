@@ -35,7 +35,7 @@ private $vue;
 		if ( $this->dao->fichierPromoExist($promo) ) {
 			$groupes = $dao->getGroupeXLS($dao->getFeuilleAbsGroupe($promo));
 			$this->vue->head();
-			$this->vue->tableauPromo($groupes);
+			$this->vue->tableauPromo($promo, $groupes);
 		} else {
 			header('location:index.php?ajoutListe=true');
 		}

@@ -17,9 +17,11 @@ class vueAbsence {
 	function tableau(){
 		if (isset($_POST['groupe'])){
 			$groupe = urldecode(explode(":",$_POST['groupe'])[1]);
+			$promo = explode(":",$_POST['groupe'])[0];
 			$date = $_POST["date"];
 		} else {
-			$groupe = urldecode($_GET['ics']);
+			$groupe = urldecode( explode(":",$_GET['ics'])[1]);
+			$promo =  explode(":", urldecode($_GET['ics']))[0];
 			$date = $_GET["semaine"];
 		}
 		$dao = new Dao();
@@ -47,9 +49,9 @@ class vueAbsence {
 		foreach ($dao->getCoursDate($periode) as $cours) {
 			array_push($tabMod, $cours->getMatiere());
 		}
-
-		$tabEtu = $dao->getEtudiants(explode(":",$_POST['groupe'])[0],$groupe);
-
+		
+		$tabEtu = $dao->getEtudiants($promo,$groupe);
+		
 		
 		
 		$html = "";
@@ -119,11 +121,11 @@ class vueAbsence {
 		echo $html;
 	}
 
-	function tableauPromo($groupes) {
+	function tableauPromo($promo, $groupes) {
 		include 'static/absencePromo.html';
 		foreach ($groupes as $g) {
-			echo "</br>";
-			echo '<a href="index.php?ics='.urlencode($g).'&semaine=8" target="_blank" >'.$g.' <a/>';
+			echo "</br>"; 
+			echo '<a href="index.php?ics='.urlencode($promo.':'.$g).'&semaine=8" target="_blank" ><input class="suiv_pre" type="button" value="'.$g.'"/> <a/>';
 		}
 		include 'static/absencePromoFoot.html';
 		// echo '<script type="text/javascript">'; //ouverture du javascript
