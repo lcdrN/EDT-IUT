@@ -22,12 +22,12 @@ function init()
 	var tableEdt = document.getElementsByClassName("tg_print");
 
 
-	var boolP=true;
-	var boolS=true;
-	var boolM=true;
-	var boolG=true;
-	var boolH=true;
-	var boolT=true;
+/*	var boolP= ( $.cookie("prof") == "checked");
+	var boolS= ( $.cookie("salle") == "checked");
+	var boolM= ( $.cookie("matiere") == "checked");
+	var boolG= ( $.cookie("groupe") == "checked");
+	var boolH= ( $.cookie("heure") == "checked");
+	var boolT= ( $.cookie("type") == "checked");*/
 
 	var boolAperçu = false;
 
@@ -51,7 +51,7 @@ function init()
 
 
 
-	Prof.addEventListener("click", cacherEns);
+	/*Prof.addEventListener("click", cacherEns);
 	function cacherEns()
 	{
 
@@ -183,7 +183,7 @@ function init()
 				};
 			boolT=true;
 		}		
-	}
+	}*/
 
 	boutonPrevu.addEventListener("click", popup);
 	function popup()
@@ -249,6 +249,7 @@ function init()
 		for (var i = 0; i < TD.length; i++) {
 			TD[i].style.backgroundColor = couleurTD.value;
 		};
+		
 
 		for (var i = 0; i < TP.length; i++) {
 			TP[i].style.backgroundColor = couleurTP.value;

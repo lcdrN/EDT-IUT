@@ -1,11 +1,11 @@
 <?php
-require_once __DIR__."/modele/DAO/Dao.php";
+/*require_once __DIR__."/modele/DAO/Dao.php";
 $dao = new Dao();
 $dao->setICS("INFO2G2");
 $dao->getCours();
 // $tab_g = $dao->getGroupes2();
-$tab_c = $dao->getCoursGroupe("2016-02-01 08:00:00", 'Groupe 2');
-
+$tab_c = $dao->getCoursGroupe("2016-02-01 08:00:00", 'Groupe 2');*/
+setcookie("TD", "", time()-3600);
 // $str = 'coucou petite xxxx';
 // str_repl
 // $dao1 = new Dao();

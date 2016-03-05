@@ -23,6 +23,10 @@ class routeur {
 
 	function router_requete() {
 		
+		if ( !isset($_COOKIE["TD"])) {
+			$this->ctrl_accueil->initCookies();
+		}
+		
 		if ( isset($_GET["ajoutListe"])) {
 			
 			

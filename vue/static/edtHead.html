@@ -6,17 +6,24 @@
 	<link rel=stylesheet type=text/css href=vue/css/edt.css>
 	<link type=text/css href=vue/css/printEDT.css rel=stylesheet media=print>
 	<script type=text/javascript src="vue/scripts/edt.js"></script>
+	
+	
+	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="vue/scripts/jquery.cookie.js"></script>
+	<script src="vue/scripts/j_query.js"></script>
 </head>
 <body onload="init();">
 	<div id="option" >
 			<fieldset id="fieldset" style="display:none;">
     		<legend><b><i>Options</i></b></legend>
-    <input type="checkbox" id='affprof' value='Cacher Prof' checked="check">Professeur<br>
-		<input type="checkbox" id='affsalle' value='Cacher Salles' checked="check">Salles<br>
-		<input type="checkbox" id='affmatiere' value='Cacher Matieres !' checked="check">Matieres<br>
-		<input type="checkbox" id='affheure' value='Cacher Heure' checked="check">Heure<br>
-		<input type="checkbox" id='afftype' value='Cacher Type' checked="check">Type<br>
-		<input type="checkbox" id='affgroupe' value='Cacher Groupe !' checked="check">Groupe<br>
+    		
+    	<input type="checkbox" id='affprof' value='Cacher Prof' <?php echo $_COOKIE["prof"]?> >Professeur<br>
+		<input type="checkbox" id='affsalle' value='Cacher Salles' <?php echo $_COOKIE["salle"]?>>Salles<br>
+		<input type="checkbox" id='affmatiere' value='Cacher Matieres !' <?php echo $_COOKIE["matiere"]?>>Matieres<br>
+		<input type="checkbox" id='affheure' value='Cacher Heure' <?php echo $_COOKIE["heure"]?>>Heure<br>
+		<input type="checkbox" id='afftype' value='Cacher Type' <?php echo $_COOKIE["type"]?> >Type<br>
+		<input type="checkbox" id='affgroupe' value='Cacher Groupe !' <?php echo $_COOKIE["groupe"]?> >Groupe<br>
 
 		<input type="button" class="suiv_pre" value="-"  id="police-">
 		<input type="button" class="suiv_pre" value="+"  id="police">
@@ -28,19 +35,19 @@
 			<legend><b><i>Couleurs</i></b></legend>
 			<table>
 				<tr>
-					<td>TD: </td><td><input type="color" id="couleurTD" value="#81BEF7"></td>
+					<td>TD: </td><td><input type="color" id="couleurTD" value=<?php echo $_COOKIE["TD"]?> ></td>
 				</tr>
 				<tr>
-					<td>TP: </td><td><input type="color" id="couleurTP" value="#567567"></td>
+					<td>TP: </td><td><input type="color" id="couleurTP" value=<?php echo $_COOKIE["TP"]?>></td>
 				</tr>
 				<tr>
-					<td>Amphi: </td><td><input type="color" id="couleurAmphi" value="#A9F5F2"></td>
+					<td>Amphi: </td><td><input type="color" id="couleurAmphi" value=<?php echo $_COOKIE["Amphi"]?>></td>
 				</tr>
 				<tr>
-					<td>DS: </td><td><input type="color" id="couleurDS" value="#FF9800"></td>
+					<td>DS: </td><td><input type="color" id="couleurDS" value=<?php echo $_COOKIE["DS"]?>></td>
 				</tr>
 				<tr>
-					<td>Projet: </td><td><input type="color" id="couleurProjet"></td>
+					<td>Projet: </td><td><input type="color" id="couleurProjet" value=<?php echo $_COOKIE["Projet"]?> ></td>
 				</tr>				
 			</table>
 			</fieldset>
