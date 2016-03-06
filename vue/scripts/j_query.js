@@ -1,11 +1,10 @@
 $(document).ready( function() {
     
     $(".td").css("backgroundColor", $.cookie("TD"));
-	$("tg-y0wm").css("backgroundColor", $.cookie("TP"));
-	$("amphi").css("backgroundColor", $.cookie("Amphi"));
-	$("ds").css("backgroundColor", $.cookie("DS"));
-    $("tg-4wtr").css("backgroundColor", $.cookie("Projet"));
-    
+	$(".tg-y0wm").css("backgroundColor", $.cookie("TP"));
+	$(".ds").css("backgroundColor", $.cookie("DS"));
+    $(".tg-4wtr").css("backgroundColor", $.cookie("Projet"));
+    $("td.amphi").css("backgroundColor", $.cookie("Amphi"));
     
    $("#color").click( function() {
        
@@ -17,10 +16,17 @@ $(document).ready( function() {
      
    });
    
+    $("#prevu").click( function() {
+        console.log("cookie prof:"+$.cookie("prof"));
+    console.log("cookie salle:"+$.cookie("salle"));
+    console.log("cookie heure:"+$.cookie("heure"));
+    console.log("cookie matiere:"+$.cookie("matiere"));
+    console.log("cookie groupe:"+$.cookie("groupe"));
+    console.log("cookie type:"+$.cookie("type"));
+     console.log("cookie police:"+$.cookie("police"));
+    });
+    
 
-   
-   
-   
    
 
    
@@ -38,7 +44,7 @@ $(document).ready( function() {
    $("#affprof").click( function() {
        
       if (  $.cookie('prof') == "checked" ) {
-           $.cookie('prof', "uncheck", { expires: 60 });
+           $.cookie('prof', "", { expires: 60 });
            $(".prof_print").css("display","none");
        } else {
            $.cookie('prof', "checked", { expires: 60 });
@@ -56,7 +62,7 @@ $(document).ready( function() {
    $("#affsalle").click( function() {
        
       if (  $.cookie('salle') == "checked" ) {
-           $.cookie('salle', "uncheck", { expires: 60 });
+           $.cookie('salle', "", { expires: 60 });
             $(".salle_print").css("display","none");
        } else {
            $.cookie('salle', "checked", { expires: 60 });
@@ -73,7 +79,7 @@ $(document).ready( function() {
    $("#affmatiere").click( function() {
        
       if (  $.cookie('matiere') == "checked" ) {
-           $.cookie('matiere', "uncheck", { expires: 60 });
+           $.cookie('matiere', "", { expires: 60 });
            $(".nom_matiere_print").css("display","none");
        } else {
            $.cookie('matiere', "checked", { expires: 60 });
@@ -90,7 +96,7 @@ $(document).ready( function() {
    $("#affheure").click( function() {
        
       if (  $.cookie('heure') == "checked" ) {
-           $.cookie('heure', "uncheck", { expires: 60 });
+           $.cookie('heure', "", { expires: 60 });
            $(".heure_print").css("display","none");
        } else {
            $.cookie('heure', "checked", { expires: 60 });
@@ -107,7 +113,7 @@ $(document).ready( function() {
    $("#afftype").click( function() {
        
       if (  $.cookie('type') == "checked" ) {
-           $.cookie('type', "uncheck", { expires: 60 });
+           $.cookie('type', "", { expires: 60 });
            $(".type_print").css("display","none");
        } else {
            $.cookie('type', "checked", { expires: 60 });
@@ -123,14 +129,48 @@ $(document).ready( function() {
    
    $("#affgroupe").click( function() {
        
-      if (  $("#affgroupe").prop("checked")  ) {
-           $.cookie('groupe', "uncheck", { expires: 60 });
-        //   $(".groupe_print").css("display","none");
+      if (  $.cookie('groupe') == "checked"  ) {
+           $.cookie('groupe', "", { expires: 60 });
+          $(".groupe_print").css("display","none");
        } else {
            $.cookie('groupe', "checked", { expires: 60 });
-        //   $(".groupe_print").css("display","block");
+          $(".groupe_print").css("display","block");
        }
-       console.log("cookie:"+$.cookie('groupe'));
+       
+   });
+   
+   /*  *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   */
+    $(".prof_print").css("font-size", $.cookie("police")+"px");
+    $(".salle_print").css("font-size", $.cookie("police")+"px");
+    $(".nom_matiere_print").css("font-size", $.cookie("police")+"px");
+    $(".heure_print").css("font-size", $.cookie("police")+"px");
+    $(".type_print").css("font-size", $.cookie("police")+"px");
+    $(".groupe_print").css("font-size", $.cookie("police")+"px");
+    
+    $("#police-").click( function() {
+        var police = parseInt($.cookie("police")) - 1;
+        $.cookie("police", police.toString(), { expires: 60 });
+       
+        $(".prof_print").css("font-size", $.cookie("police")+"px");
+        $(".salle_print").css("font-size", $.cookie("police")+"px");
+        $(".nom_matiere_print").css("font-size", $.cookie("police")+"px");
+        $(".heure_print").css("font-size", $.cookie("police")+"px");
+        $(".type_print").css("font-size", $.cookie("police")+"px");
+        $(".groupe_print").css("font-size", $.cookie("police")+"px");
+   });
+   
+   $("#police").click( function() {
+        var police = parseInt($.cookie("police")) + 1;
+        $.cookie("police", police.toString(), { expires: 60 });
+       
+        $(".prof_print").css("font-size", $.cookie("police")+"px");
+        $(".salle_print").css("font-size", $.cookie("police")+"px");
+        $(".nom_matiere_print").css("font-size", $.cookie("police")+"px");
+        $(".heure_print").css("font-size", $.cookie("police")+"px");
+        $(".type_print").css("font-size", $.cookie("police")+"px");
+        $(".groupe_print").css("font-size", $.cookie("police")+"px");
    });
     
 });
+
+

@@ -30,7 +30,7 @@ private $vue;
    setcookie("heure", "checked", strtotime( '+60 days' ));
    setcookie("type", "checked", strtotime( '+60 days' ));
    setcookie("groupe", "checked", strtotime( '+60 days' ));
-   setcookie("police", "12px", strtotime( '+60 days' ));
+   setcookie("police", "12", strtotime( '+60 days' ));
    
    
  }

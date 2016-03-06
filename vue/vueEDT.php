@@ -58,7 +58,11 @@ class vueEDT {
 		include ('static/edtHead.html');
 		$precedent = $_POST['date']-1;
 		$suivant = $_POST['date']+1;
-		$grp = explode(":", $_POST['groupe'])[1];
+		if (strpos($_POST['groupe'], ':') !== FALSE)
+		    $grp = explode(":", $_POST['groupe'])[1];
+		else
+		    $grp = $_POST['groupe'];
+		
 		$groupe_decode = urldecode($grp);
 		$html =
 		"<div id=div_prevu >".$this->tableApercu."</div>

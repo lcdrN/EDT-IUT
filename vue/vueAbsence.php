@@ -16,16 +16,29 @@ class vueAbsence {
 
 	function tableau(){
 		if (isset($_POST['groupe'])){
-			$groupe = urldecode(explode(":",$_POST['groupe'])[1]);
-			$promo = explode(":",$_POST['groupe'])[0];
+			
+			if (strpos($_POST['groupe'], ':') !== FALSE) {
+			    $groupe = urldecode(explode(":",$_POST['groupe'])[1]);
+				$promo = explode(":",$_POST['groupe'])[0];
+			} else {
+			    // header("location:index.php");
+			    $groupe = $_POST['groupe'];
+			    $promo = $_POST['groupe'];
+			}
 			$date = $_POST["date"];
 		} else {
-			$groupe = urldecode( explode(":",$_GET['ics'])[1]);
-			$promo =  explode(":", urldecode($_GET['ics']))[0];
+			if (strpos($_GET['ics'], ':') !== FALSE) {
+				$groupe = urldecode( explode(":",$_GET['ics'])[1]);
+				$promo =  explode(":", urldecode($_GET['ics']))[0];
+			} else {
+			    // header("location:index.php");
+			    $groupe = $_GET['ics'];
+			    $promo = $_GET['ics'];
+			}
 			$date = $_GET["semaine"];
 		}
 		$dao = new Dao();
-		
+		// var_dump($group);
 		$dao->setICS($groupe);
 		$dao->getCours();
 

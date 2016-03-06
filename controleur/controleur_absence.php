@@ -21,9 +21,14 @@ private $vue;
  	} else if ( isset($_POST["groupe"]))  {
  		$groupe  = explode(":",$_POST["groupe"])[1];
  		$promo = explode(":",$_POST["groupe"])[0];
+ 		
  	} else {
- 		$groupe  = $_GET["ics"];
- 	}
+ 		
+	    $groupe  = explode(":",$_GET["ics"])[1];
+ 		$promo = explode(":",$_GET["ics"])[0];
+		
+		    
+  	}
  	
  	if ( $groupe == NULL) {
  		
