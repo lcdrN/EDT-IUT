@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__."/../vue/vueAccueil.php";
+require_once __DIR__."/../vue/vueCookie.php";
 
 class ControleurAccueil{
 
@@ -8,7 +9,9 @@ class ControleurAccueil{
 private $vue;
  
  public function __construct(){
- 	$this->vue = new vueAccueil();
+  
+  
+  $this->vue = new vueAccueil();
  }
 
  function affiche(){
@@ -16,7 +19,7 @@ private $vue;
  }
  
  function initCookies(){
-
+  
 
   setcookie("TD","#81BEF7", strtotime( '+60 days' ));
   setcookie("TP", "#567567", strtotime( '+60 days' ));

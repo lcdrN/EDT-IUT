@@ -12,10 +12,16 @@ class routeur {
 	private $ctrl_abs;
 
 	function __construct(){
+		
 		$this->ctrl_accueil = new controleurAccueil();
+		
+		
+
 		$this->ctrl_edt = new controleurEDT();
 		$this->ctrl_abs = new ControleurAbsence();
 		$this->ctrl_ajout = new ControleurAjout();
+
+
 
 
 	}
@@ -23,12 +29,9 @@ class routeur {
 
 	function router_requete() {
 		
-		if ( !isset($_COOKIE["TD"])) {
-			$this->ctrl_accueil->initCookies();
-		}
+		
 		
 		if ( isset($_GET["ajoutListe"])) {
-			
 			
 			$this->ctrl_ajout->affiche();
 		} 

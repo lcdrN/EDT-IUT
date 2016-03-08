@@ -1,2 +1,0 @@
-# EDT-IUT
-# EDT-IUT

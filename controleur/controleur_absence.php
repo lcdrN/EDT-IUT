@@ -19,14 +19,23 @@ private $vue;
  		$this->vue->ajoutListe();
  		
  	} else if ( isset($_POST["groupe"]))  {
- 		$groupe  = explode(":",$_POST["groupe"])[1];
+ 		if ( strpos($_POST["groupe"], ':') !== FALSE) {
+ 			$groupe  = explode(":",$_POST["groupe"])[1];
  		$promo = explode(":",$_POST["groupe"])[0];
+		} else {
+	    	$groupe = "";
+ 			$promo = $_POST["groupe"];
+		}
+ 		
  		
  	} else {
- 		
-	    $groupe  = explode(":",$_GET["ics"])[1];
- 		$promo = explode(":",$_GET["ics"])[0];
-		
+ 		if ( strpos($_GET["ics"], ':') !== FALSE) {
+ 			$groupe  = explode(":",$_GET["ics"])[1];
+ 			$promo = explode(":",$_GET["ics"])[0];
+		} else {
+	    	$groupe = "";
+ 			$promo = $_GET["ics"];
+		}
 		    
   	}
  	
