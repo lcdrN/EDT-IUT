@@ -17,14 +17,24 @@ $(document).ready( function() {
    });
    
     $("#prevu").click( function() {
-        console.log("cookie prof:"+$.cookie("prof"));
-    console.log("cookie salle:"+$.cookie("salle"));
-    console.log("cookie heure:"+$.cookie("heure"));
-    console.log("cookie matiere:"+$.cookie("matiere"));
-    console.log("cookie groupe:"+$.cookie("groupe"));
-    console.log("cookie type:"+$.cookie("type"));
-     console.log("cookie police:"+$.cookie("police"));
+      console.log("cookie prof:"+$.cookie("prof"));
+      console.log("cookie salle:"+$.cookie("salle"));
+      console.log("cookie heure:"+$.cookie("heure"));
+      console.log("cookie matiere:"+$.cookie("matiere"));
+      console.log("cookie groupe:"+$.cookie("groupe"));
+      console.log("cookie type:"+$.cookie("type"));
+      console.log("cookie police:"+$.cookie("police"));
+
+      console.log($("#couleur").css("top"));
+      if ( $("#couleur").css("top") < $("#option").css("height") ) {
+        $("#couleur").animate({top:"40%"});
+      } else {
+        $("#couleur").animate({top:"20%"});
+      }
+      
     });
+
+
     
 
    

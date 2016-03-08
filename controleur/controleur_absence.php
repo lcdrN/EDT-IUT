@@ -21,7 +21,7 @@ private $vue;
  	} else if ( isset($_POST["groupe"]))  {
  		if ( strpos($_POST["groupe"], ':') !== FALSE) {
  			$groupe  = explode(":",$_POST["groupe"])[1];
- 		$promo = explode(":",$_POST["groupe"])[0];
+ 			$promo = explode(":",$_POST["groupe"])[0];
 		} else {
 	    	$groupe = "";
  			$promo = $_POST["groupe"];

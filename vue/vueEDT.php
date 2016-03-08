@@ -70,9 +70,15 @@ class vueEDT {
 		<div class=edt id=tableEdt>
 			<ul>
 			  <li><a href=index.php>Accueil</a></li>
-			  <li><a class=active>EDT</a></li>
-			  <li><a href=index.php?ics=".urlencode($_POST['groupe'])."&semaine=".$_POST['date']." target=_blank> Feuille Absence </a>
-			  <li><a href=index.php?ajoutListe=true>Gérer Listes</a></li>
+			  <li><a class=active>EDT</a></li>";
+		if ( strpos($_POST["groupe"], ':') !== FALSE) {
+ 			$html .= "<li><a href=index.php?ics=".urlencode($_POST['groupe'])."&semaine=".$_POST['date']." target=_blank> Feuille Absence </a>";
+		} else {
+	    	$html .= "";
+		}
+		
+		$html.= 
+			  "<li><a href=index.php?ajoutListe=true>Gérer Listes</a></li>
 			  <li><a href=#contact>Contact</a></li>
 			  <li><a href=#about>About</a></li>
 			</ul>
