@@ -1,8 +1,12 @@
 <?php
 
 require_once __DIR__."/../vue/vueAccueil.php";
-require_once __DIR__."/../vue/vueCookie.php";
 
+
+/** ControleurAccueil
+ *  Classe qui permet de gerer la vue
+ *  de l'accueil
+ */
 class ControleurAccueil{
 
 
@@ -18,9 +22,12 @@ private $vue;
  	$this->vue->affiche();
  }
  
+ /** Fonction qui initialise les cookies lorsqu'il ne sont
+  *  pas possitionee.
+  */
  function initCookies(){
   
-
+ 
   setcookie("TD","#81BEF7", strtotime( '+60 days' ));
   setcookie("TP", "#567567", strtotime( '+60 days' ));
   setcookie("Amphi", "#A9F5F2", strtotime( '+60 days' ));

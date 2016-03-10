@@ -6,24 +6,34 @@ require_once __DIR__.'/../Bean/Cours.php';
 require_once __DIR__.'/../Bean/Groupe.php';
 require_once __DIR__.'/../Bean/Promo.php';
 
+/** DAO
+ *  Data Acces Object. Classe qui permet d'acceder aux donnees
+ *  des ICS.
+ *  Cette classe contient un tableau de cours en attribut afin 
+ *  de parser l'ics une seule fois.
+ *  Cette classe utilise:
+ * 		-le parser iCalendar2 afin de parser l'ics.
+ * 		-PHPExcel afin lire les fichiers xls.
+ *  
+ */
 class Dao {
 
-	//private $ICS = "https://edt.univ-nantes.fr/iut_nantes/g39705.ics";
-	//private $ICS = "https://edt.univ-nantes.fr/iut_nantes/g3179.ics";
-	//private $ICS = $_POST['groupe'];
-	//private $ICS ="https://edt.univ-nantes.fr/iut_nantes/g3145.ics";
+
 	private $tab_cours = array();
-	// private $tab_Etu;
-	// private $CSV = "test.csv";
 	private $ICS ;
 
 	public function setICS($string) {
 		$this->ICS = $this->getUrlForm($string);
 	}
 
-	/* Fonction qui retourne un tableau de cours */
+/*0 		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
 
+	/** Fonction qui remplis un tableau de cours.
+	 *  Utilise icalendar.
+	 */
 	public function getCours(){
+		
+		/* Parse l'ics*/
 		$nb = 0;
 		$tab = array();
 		$ical = new SG_iCalReader($this->ICS);
@@ -126,7 +136,7 @@ class Dao {
 			$date = new DateTime('@'.$date_debut);
 
 
-
+			/* Instancie les BEANs*/
 			$cours = new Cours();
 			$cours->setDateDebut($date_debut);
 			$cours->setMatiere($Matiere);
@@ -153,14 +163,15 @@ class Dao {
 			array_push($this->tab_cours, $cours);
 		}
 	}
+	
+/*1 		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
+
 		/**
 		*	Methode qui retourne tous les groupes présent dans un tableau de cours donnée
 		*	@return Un tableau associatif de groupes
 		*
 		*/
 		function getGroupes($tabCours){
-
-
 			$tab_groupe = array();
 			foreach ($tabCours as $cours) {
 				foreach ($cours->getGroupe() as $g) {
@@ -171,6 +182,8 @@ class Dao {
 			sort($tab_groupe);
 			return $tab_groupe;
 		}
+/*2 		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
+
 
 		/**
 		*	Methode qui retourne tous les groupes présent dans l'ics
@@ -189,7 +202,7 @@ class Dao {
 			}
 			return $tab_groupe;
 		}
-
+/*3 		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
 
 		
 
@@ -217,10 +230,11 @@ class Dao {
 		}
 
 
+/*4 		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
 
 		/**
-		*	Methode qui retourne les cours de l'ics selon la date du debut.
-		*	Prend les cours a partir de la date debut compris + 6 jours (inclus)
+		*	Methode qui retourne les cours de la journee de l'ics selon la date du debut.
+		*	Prend les cours de la journee 
 		*	@param date -> 'm-d H:i:s'
 		*	@return Un tableau de cours
 		*/
@@ -241,11 +255,15 @@ class Dao {
 			return $tab_cours;
 			
 		}
+		
+/*5 		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
+
 
 		/**
-		*	Methode qui retourne les cours de l'ics selon la date du debut.
-		*	Prend les cours a partir de la date debut
+		*	Methode qui retourne les cours de la journee de l'ics selon la date du debut et le groupe.
+		*	Prend le premier jour de la semaine en parametre ainsi que le groupe
 		*	@param date -> 'm-d H:i:s'
+		*   @param groupe
 		*	@return Un tableau de cours
 		*/
 		function getCoursDateJourneeGroupe($jour_debut, $groupe){
@@ -268,7 +286,16 @@ class Dao {
 			
 		}
 		
+/*6 		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
 
+
+		/**
+		*	Methode qui retourne les cours de la journee de l'ics selon la date du debut et le 1er sous-groupe.
+		*	Prend le premier jour de la semaine en parametre ainsi que le sous-groupe
+		*	@param date -> 'm-d H:i:s'
+		*   @param sous_groupe
+		*	@return Un tableau de cours
+		*/
 		function getCoursDateJourneeSousGroupe($jour_debut, $groupe){
 			$tab_cours = array();
 			$jour_debut = new DateTime($jour_debut);
@@ -289,6 +316,17 @@ class Dao {
 			
 		}
 
+
+/*7		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
+
+
+		/**
+		*	Methode qui retourne les cours de la journee de l'ics selon la date du debut et le 2eme sous-groupe.
+		*	Prend le premier jour de la semaine en parametre ainsi que le sous-groupe
+		*	@param date -> 'm-d H:i:s'
+		*   @param sous_groupe
+		*	@return Un tableau de cours
+		*/
 		function getCoursDateJourneeSousGroupeBis($jour_debut, $groupe){
 			$tab_cours = array();
 			$jour_debut = new DateTime($jour_debut);
@@ -308,7 +346,15 @@ class Dao {
 			return $tab_cours;
 			
 		}
-
+/*8 		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
+		
+		/**
+		*	Methode qui retourne les cours de la journee de l'ics selon la date du debut et le groupe.
+		*	Prend le premier jour de la semaine en parametre ainsi que le groupe
+		*	@param date -> 'm-d H:i:s'
+		*   @param groupe
+		*	@return Un tableau de cours
+		*/
 		function getCoursDateJourneeGroupeBis($jour_debut, $groupe){
 			$tab_cours = array();
 			$jour_debut = new DateTime($jour_debut);
@@ -330,7 +376,13 @@ class Dao {
 		}
 
 
+/*8 		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
 
+		/**
+		*	Methode qui retourne le cour precedent
+		*	@param cours Objet de type cour
+		*	@return un cour
+		*/
 		function getCourPrecedent($cours){
 
 			$ret = new DateTime($cours->getDateDeb()->format('Y-m-d H:i:s'));
@@ -354,7 +406,14 @@ class Dao {
 
 		}
 
+/*9 		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
 
+		/**
+		*	Methode qui retourne la taille en nombre de colonne d'un cour.
+		*	Prend un cour en parametre
+		*	@param cours Objet cour
+		*	@return entier 
+		*/
 		function getTailleRowspan($cours){
 
 			$ret = "2";
@@ -379,7 +438,13 @@ class Dao {
 			return $ret;
 
 		}
-
+/*10 		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
+		/**
+		*	Methode qui retourne un booleen, si il ya pas presence du sous groupe 0 dans le cour
+		*	Prend un cour en parametre
+		*	@param cours Objet cour
+		*	@return booleen Vrai si le cour ne contient pas le sous-groupe 0 
+		*/
 		function tmp($cours){
 			$tmp = true;
 			foreach ($cours->getGroupe() as $groupe) {
@@ -391,8 +456,15 @@ class Dao {
 		}
 
 
+/*11 		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
 
-
+		/**
+		*	Methode qui retourne les cours du groupe et des sous-groupes associes, de la journee.
+		*	Prend un jour en parrametre de type string
+		*	@param date -> 'm-d H:i:s'
+		*   @param groupe
+		*	@return un tableau de cours 
+		*/
 		function getGroupeSousGroupe($journee, $groupe){
 			$tab_coursGroupe = $this->getCoursDateJourneeGroupe($journee, $groupe);
 			$tab_coursSousGroupe = $this->getCoursDateJourneeSousGroupe($journee, $groupe);
@@ -404,6 +476,7 @@ class Dao {
 		}
 		
 		
+/*12 		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
 		
 		/**
 		*	Methode qui retourne les cours de l'ics selon un groupe.
@@ -434,9 +507,15 @@ class Dao {
 			
 		}
 		
+/*13 		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
 		
 		
-
+		/**
+		*	Methode qui retourne les etudiants d'un groupe.
+		*	@param promo
+		*	@param groupe numero du groupe
+		*	@return Un tableau de d'etudiants array(array("nom","prenom"))
+		*/		
 		function getEtudiants($promo, $groupe)
 		{
 			try {
@@ -463,7 +542,15 @@ class Dao {
 				return NULL;
 			}
 		}
+/*14 		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
 		
+		
+		/**
+		*	Methode qui teste si la promo est contenu dans le fichier,
+		*   contenant les chemin des feuilles d'absensces
+		*	@param promo
+		*	@return booleen Vrai si promo est contenu dans le fichie
+		*/
 		function fichierPromoExist ($promo) {
 			$fic = fopen("modele/DAO/data/feuilleABS.csv", "r");
 			$boolean = false;
@@ -475,7 +562,14 @@ class Dao {
 			}	
 			return $boolean;
 		}
+/*15 		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
 
+
+		/**
+		*	Methode qui retourne l'url de l'ics d'un groupe
+		*	@param groupe
+		*	@return url l'url de l'ics associe au groupe
+		*/
 		function getUrlForm($groupe) {
 			$url = "";
 			$fic = fopen("modele/DAO/data/form.csv", "r");
@@ -487,7 +581,14 @@ class Dao {
 			}	
 			return $url;
 		}
+/*16 		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
 		
+		
+		/**
+		*	Methode qui ajoute une promo, et le lien du fichier contenant les etudiants dans le fichier feuilleABS.csv
+		*	@param promo la promo
+		* 	@param chemin_fichier le chemin du fichier
+		*/
 		function ajoutPromoCsv($promo, $chemin_fichier) {
 			$lines = file("modele/DAO/data/feuilleABS.csv");
 			// var_dump($lines);
@@ -511,7 +612,13 @@ class Dao {
 			}
 			
 		}
+/*17 		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
 		
+		
+		/**
+		*	Methode qui retourne tous les groupes contenu dans le fichier form.csv ( fichier contenant les urls des ics)
+		* 	@return un tableau de groupe (string)
+		*/
 		function getGroupesCSV() {
 			$tab_grp = array();
 			$fic = fopen("modele/DAO/data/form.csv", "r");
@@ -521,7 +628,14 @@ class Dao {
 			}	
 			return $tab_grp;
 		}
+/*18 		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
 		
+		
+		
+		/**
+		*	Methode qui retourne tous les groupes contenu dans le fichier feuilleABS.csv ( fichier contenant les chemins des feuille d'abs)
+		* 	@return un tableau de groupe (string)
+		*/
 		function getGroupeFeuilleAbs() {
 			$tab_grp = array();
 			$fic = fopen("modele/DAO/data/feuilleABS.csv", "r");
@@ -531,7 +645,13 @@ class Dao {
 			}	
 			return $tab_grp;
 		}
+/*19		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
 		
+		/**
+		*	Methode qui retourne le chemin du fichier des feuilles d'abs
+		* 	@param promo la promo souhaitee
+		*   @return chemin le chemin de la feuille contenant les noms des etudiants
+		*/
 		function getFeuilleAbsGroupe($promo) {
 			$fic = fopen("modele/DAO/data/feuilleABS.csv", "r");
 			$return = "";
@@ -544,7 +664,13 @@ class Dao {
 			// var_dump($return);
 			return $return;
 		}
+/*20 		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
 
+		/**
+		*	Methode qui retourne les groupes d'une promo, contenu dans les fichiers d'absences
+		* 	@param nom_fichier le nom du fichier
+		*   @return tableau un tableau de groupe (string)
+		*/
 		function getGroupeXLS($file_name)
 		{
 			$tab_groupe = array();
@@ -565,8 +691,13 @@ class Dao {
 		}
 
 
+/*21 		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
 	
 }
+
+	/**
+	*	Methode qui permettent le découpage de chaines de carateres
+	*/
 
 	function after ($s, $inthat)
     {

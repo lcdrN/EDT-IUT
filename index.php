@@ -1,4 +1,5 @@
 <?php
+/* Positionne les cookies si ils ne le sont pas*/
 if ( !isset($_COOKIE["TD"])) {
       setcookie("TD","#81BEF7", strtotime( '+60 days' ));
 	  setcookie("TP", "#567567", strtotime( '+60 days' ));
@@ -14,6 +15,8 @@ if ( !isset($_COOKIE["TD"])) {
 	   setcookie("groupe", "checked", strtotime( '+60 days' ));
 	   setcookie("police", "12", strtotime( '+60 days' ));
   }
+  
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 require_once "controleur/routeur.php";
 
 $routeur = new Routeur();

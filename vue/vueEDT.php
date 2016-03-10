@@ -71,7 +71,7 @@ class vueEDT {
 			<ul>
 			  <li><a href=index.php>Accueil</a></li>
 			  <li><a class=active>EDT</a></li>";
-		if ( strpos($_POST["groupe"], ':') !== FALSE) {
+		if ( explode(":", $_POST['groupe'])[1] != null ) {
  			$html .= "<li><a href=index.php?ics=".urlencode($_POST['groupe'])."&semaine=".$_POST['date']." target=_blank> Feuille Absence </a>";
 		} else {
 	    	$html .= "";

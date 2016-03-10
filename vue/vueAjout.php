@@ -1,6 +1,10 @@
 <?php
 
-
+/**
+ *  Classe qui permet de creer la vue 
+ *  de la l'ajout.
+ * 
+ */
 class vueAjout {
    
 

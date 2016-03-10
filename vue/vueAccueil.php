@@ -1,6 +1,10 @@
 <?php
 
-
+/**
+ *  Classe qui permet de creer la vue 
+ *  de la l'accueil.
+ * 
+ */
 class vueAccueil {
 
 	 
@@ -14,7 +18,11 @@ class vueAccueil {
 		include 'static/accueilFoot.html';
 		
 	}
-
+	
+	/** Methode qui affiche toutes les options
+	 *  de date.
+	 *  Debute et finie selon l'annee scolaire.
+	 */
 	function selectSemaine() {
 		echo '<div class="select">
 					<td>Choisissez la semaine: </td>

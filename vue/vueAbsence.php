@@ -1,6 +1,10 @@
 <?php
 
-
+/**
+ *  Classe qui permet de creer la vue 
+ *  generant la feuille d'absence.
+ * 
+ */
 class vueAbsence {
 
 	 
@@ -13,8 +17,17 @@ class vueAbsence {
 	function head() {
 		include "static/absence.html";
 	}
-
+	
+	/** Fonction qui affiche un tableau representant une feuille d'absence.
+	 *  Parcour tous les cours de la periode passe en paremetre selon le
+	 *  groupe passe en parametre. 
+	 * 
+	 */
 	function tableau(){
+		
+		/* Selon la methode de passage de parametre POST ou GET on recupere
+		   le groupe et la date passee en parametre.						
+		*/
 		if (isset($_POST['groupe'])){
 			
 			if (strpos($_POST['groupe'], ':') !== FALSE) {
@@ -37,12 +50,13 @@ class vueAbsence {
 			}
 			$date = $_GET["semaine"];
 		}
+		/* On instancie un DAO afin de recuperer les donnees*/
 		$dao = new Dao();
 		// var_dump($group);
-		$dao->setICS($groupe);
-		$dao->getCours();
+		$dao->setICS($groupe); 	// Indique pour quelle groupe.
+		$dao->getCours();		// Le DAO recupere les cours associe a partir de l'ics.
 
-
+		/* Calcul des dates*/
 		$tmpdate = new DateTime();
 		$tmpdate->setISOdate("2016", $date);
 		$periode = $tmpdate->format("y-m-d");
@@ -58,15 +72,16 @@ class vueAbsence {
 		$tabDate["Jeudi"] = $tabDate["Lundi"]->add( new DateInterval('P3D'));
 		$tabDate["Vendredi"] = $tabDate["Lundi"]->add( new DateInterval('P4D'));
 
-
+		/* Recupere tous les cours*/
 		foreach ($dao->getCoursDate($periode) as $cours) {
 			array_push($tabMod, $cours->getMatiere());
 		}
 		
+		/* recupere les etudiants*/
 		$tabEtu = $dao->getEtudiants($promo,$groupe);
 		
 		
-		
+		/* Affiche la table */
 		$html = "";
 		$html = $html .'<p>'.$groupe.'</br>'.$tmpdate->format("d-m-y").'</p>';
 		$html = $html .'<body>';
@@ -134,6 +149,10 @@ class vueAbsence {
 		echo $html;
 	}
 
+
+	/** Fonction qui affiche des liens pour
+	 *  tous les groupes de la promo.
+	 */
 	function tableauPromo($promo, $groupes) {
 		include 'static/absencePromo.html';
 		foreach ($groupes as $g) {
@@ -141,15 +160,6 @@ class vueAbsence {
 			echo '<a href="index.php?ics='.urlencode($promo.':'.$g).'&semaine=8" target="_blank" ><input class="suiv_pre" type="button" value="'.$g.'"/> <a/>';
 		}
 		include 'static/absencePromoFoot.html';
-		// echo '<script type="text/javascript">'; //ouverture du javascript
-		// for ($i=0; $i<=5; $i++) { // début boucle
-		
-		// echo "window.open('http://infoweb/~e145634y/edt_projet/edt_n%20%28copie%29/index.php')";
-		
-		// } // fin boucle
-		 
-		// echo '</script>'; // fermeture du JS
-		
 	}
 	
 
