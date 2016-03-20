@@ -23,7 +23,12 @@ class Dao {
 	private $ICS ;
 
 	public function setICS($string) {
-		$this->ICS = $this->getUrlForm($string);
+		if ( strpos($string, "http") !== false) {
+			
+			$this->ICS = $string;
+		} else {
+			$this->ICS = $this->getUrlForm($string);
+		}
 	}
 
 /*0 		*		*		*		*		*		*		*		*		*		*		*		*		*		*		*/
@@ -127,7 +132,6 @@ class Dao {
 			}
 
 			
-
 			$type = before(' -', $sum2);
 			$salle = between('Salle : ', '<br />', $String);
 			$date_debut = $jsEvt['start'];
