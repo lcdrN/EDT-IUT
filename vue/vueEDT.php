@@ -62,7 +62,7 @@ class vueEDT {
 		    $grp = explode(":", $_POST['groupe'])[1];
 		else
 		    $grp = $_POST['groupe'];
-		
+
 		$groupe_decode = urldecode($grp);
 		$html =
 		"<div id=div_prevu >".$this->tableApercu."</div>
@@ -71,13 +71,13 @@ class vueEDT {
 			<ul>
 			  <li><a href=index.php>Accueil</a></li>
 			  <li><a class=active>EDT</a></li>";
-		if ( explode(":", $_POST['groupe'])[1] != null ) {
+		if ( count(explode(":", $_POST['groupe'])) >= 2  ) {
  			$html .= "<li><a href=index.php?ics=".urlencode($_POST['groupe'])."&semaine=".$_POST['date']." target=_blank> Feuille Absence </a>";
 		} else {
 	    	$html .= "";
 		}
-		
-		$html.= 
+
+		$html.=
 			  "<li><a href=index.php?ajoutListe=true>Gérer Listes</a></li>
 			  <li><a href=#contact>Contact</a></li>
 			  <li><a href=#about>About</a></li>
@@ -105,7 +105,7 @@ class vueEDT {
 	<td/>
 	<td>
 		<form method=post  action=index.php>
-		
+
 		</form>
 	<td/>
 
@@ -155,12 +155,12 @@ $html = "
 <tr>
 <form method=post  action=index.php>
 <td>
-	
+
 	<input type=hidden name=groupe value=".urlencode(urldecode($grp))." />
 	<input type=hidden name=date value=".$precedent." />
 	<input type=hidden name=edt value=true />
 	<input class=suiv_pre type=submit value='Semaine Precedenteeeeeeeee' />
-	
+
 <td/>
 
 <td>
@@ -169,9 +169,9 @@ $html = "
 	<input type=hidden name=date value=".$suivant." />
 	<input type=hidden name=edt value=true />
 	<input class=suiv_pre type=submit value='Semaine Suivante' />
-	
+
 <td/>
-<td>	
+<td>
 <a href=index.php?ics=".urlencode($_POST['groupe'])."&semaine=".$_POST['date']." target=_blank> <input class=suiv_pre type=button value=FeuilleAbsence> </a>
 <td/>
 </form>
@@ -284,7 +284,7 @@ foreach ($dao->getGroupes($dao->getCoursDate($journee->format("Y-m-d h:i:s"))) a
 	if(!empty($coursG2)) {
 
 		$courpre = $dao->getCourPrecedent($coursG2[0]);
-	
+
 
 		$html .= "<tr>";
 		foreach ($coursG2 as $c2) {
@@ -323,7 +323,7 @@ foreach ($dao->getGroupes($dao->getCoursDate($journee->format("Y-m-d h:i:s"))) a
 
 
 
-	
+
 
 
 
@@ -336,7 +336,7 @@ foreach ($dao->getGroupes($dao->getCoursDate($journee->format("Y-m-d h:i:s"))) a
 	}
 
 
-	
+
 
 }
 
@@ -393,5 +393,3 @@ foreach ($groupes as $g) {
 
 
 ?>
-
-

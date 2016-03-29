@@ -11,20 +11,28 @@ class controleurEDT{
 
 private $vue;
 private $dao;
- 
+
  public function __construct(){
  	$this->vue = new vueEDT();
  	$this->dao = new Dao();
  }
 
  function affiche(){
- 	$grp = explode(":", $_POST['groupe'])[0];
- 	// var_dump($_POST['groupe']);
+  $grp = $_POST['groupe'];
+
+ 	$grp = explode(":", $_POST['groupe']);
+  if ( count($grp) >= 2) {
+    $grp = $grp[1];
+  } else {
+    $grp = $grp[0];
+  }
+  var_dump($grp);
+ // 	var_dump($_POST['groupe']);
 	$this->dao->setICS(urldecode($grp));
 	$this->dao->getCours();
 
-	
-			
+
+
 
 	$edt = $this->genererEDT($_POST['date']);
 	$edtApercu = $this->genererTableEdt($edt);
@@ -35,7 +43,7 @@ private $dao;
  }
 
 function genererJourGroupe($jour, $groupe){
-	
+
  	//Récupère les cours du jour du groupe (x+x.1 et x.2)
  	$cours = $this->dao->getGroupeSousGroupe($jour->format("Y-m-d h:i:s"), $groupe);
 	$coursG2 = $this->dao->getCoursDateJourneeSousGroupeBis($jour->format("Y-m-d h:i:s"), $groupe);
@@ -56,7 +64,7 @@ function genererJourGroupe($jour, $groupe){
 	//Pour chaque cour du groupe X et X.1
 	foreach ($cours as $uncour) {
 
-		//Si une différence de temps entre le cour précédent et $uncour 
+		//Si une différence de temps entre le cour précédent et $uncour
 		if(diffCoursDate($date_cour_precedent, $uncour->getDateDeb()) > 0){
 			$html .= $this->vue->genererEspaceCour(diffCoursDate($date_cour_precedent, $uncour->getDateDeb()), $this->dao->getTailleRowspan($uncour));
 		}
@@ -80,7 +88,7 @@ function genererJourGroupe($jour, $groupe){
 			}
 		//On affiche le cour
 		$html .= $this->vue->genererUnCour($uncour);
-		$date_cour_precedent = $uncour->getDateFin();	
+		$date_cour_precedent = $uncour->getDateFin();
 		}
 		$html .="</tr>";
 	}
@@ -96,12 +104,12 @@ function genererJourGroupe($jour, $groupe){
 
 function genererUnJour($jour){
 
-	$html = array(); 
+	$html = array();
 	//On récupère tout les groupes
 	$groupes = $this->dao->getGroupes($this->dao->getCoursDateJournee($jour->format("Y-m-d H:i:s")));
 	if(count($groupes) == 1 && $groupes[0]->getNumero() == "0"){
 		$groupes[0]->setNumero("1");
-	} 
+	}
 	//Pour chaque groupes on genère le code html
 	foreach ($groupes as $ungroupe) {
 		if($ungroupe->getNumero() != 0) {
