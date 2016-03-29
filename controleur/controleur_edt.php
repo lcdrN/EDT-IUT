@@ -26,7 +26,7 @@ private $dao;
   } else {
     $grp = $grp[0];
   }
-  var_dump($grp);
+  //var_dump($grp);
  // 	var_dump($_POST['groupe']);
 	$this->dao->setICS(urldecode($grp));
 	$this->dao->getCours();
