@@ -1,0 +1,6 @@
+*** INSTALL ***
+
+- Extraire l'archive sur un serveur.
+
+- Le serveur doit autoriser l'ajout/modification de fichier dans le dossier
+  /modele/DAO/data .
