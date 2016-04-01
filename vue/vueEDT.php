@@ -330,9 +330,6 @@ foreach ($dao->getGroupes($dao->getCoursDate($journee->format("Y-m-d h:i:s"))) a
 
 
 
-// echo '<div id="div_prevu"></div>';
-//echo $html;
-
 	}
 
 
@@ -344,52 +341,9 @@ foreach ($dao->getGroupes($dao->getCoursDate($journee->format("Y-m-d h:i:s"))) a
 
 
 
-//echo preg_replace('#[^0-9]#', null, "fef 5 erf e fe 7 v687645 ");
 
 
 
-
-/*
-
-
-echo '// Groupes de l ics';
-$groupes = $dao->getGroupes();
-foreach ($groupes as $groupe) {
-	echo '<br/>'.$groupe->toString();
-}
-echo '<br/> // promos de l ics';
-$promos = $dao->getPromo();
-foreach ($promos as $promo) {
-	echo '<br/>'.$promo;
-}
-
-echo '<br/> // Cours a partir du 18/01/2016 8h';
-$cours = $dao->getCoursDate("2016-01-18 08:00:00");
-foreach ($cours as $c) {
-	echo '<br/>'.$c->format('Y-m-d H:i:s');
-}
-
-
-
-echo '<br/> // Groupe de promo info2';
-$groupes = $dao->getGroupePromo("info2");
-foreach ($groupes as $g) {
-	echo $g->toString().'|';
-}
-
-echo '<br/> // Cours du groupe 2 du "2016-01-18 08:00:00"';
-$groupes = $dao->getCoursGroupe("2016-01-18 08:00:00","promo2g2");
-foreach ($groupes as $g) {
-	echo $g->toString().'|';
-}
-
-// echo '<br/> // Cours de promo 2 du "2016-01-18 08:00:00"';
-// $groupes = $dao->getCoursPromo("2016-01-18 08:00:00","promo2g2");
-// foreach ($groupes as $g) {
-// 	echo $g->toString().'|';
-// }
-
-*/
 
 
 ?>

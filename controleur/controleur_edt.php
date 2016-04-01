@@ -26,7 +26,7 @@ private $dao;
   } else {
     $grp = $grp[0];
   }
-  //var_dump($grp);
+  // var_dump($grp);
  // 	var_dump($_POST['groupe']);
 	$this->dao->setICS(urldecode($grp));
 	$this->dao->getCours();
@@ -83,7 +83,7 @@ function genererJourGroupe($jour, $groupe){
 		foreach ($coursG2 as $uncour) {
 			$date_cour_precedent = $this->dao->getCourPrecedent($uncour);
 			if(diffCoursDate($date_cour_precedent, $uncour->getDateDeb()) > 0){
-				echo $uncour->getProf()." ".$date_cour_precedent->format("Y-m-d H:i:s")."<br>";
+				// echo $uncour->getProf()." ".$date_cour_precedent->format("Y-m-d H:i:s")."<br>";
 				$html .= $this->vue->genererEspaceCour(diffCoursDate($date_cour_precedent, $uncour->getDateDeb()), $this->dao->getTailleRowspan($uncour));
 			}
 		//On affiche le cour
